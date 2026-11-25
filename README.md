@@ -1,13 +1,22 @@
+<div align="center" markdown>
+
 # Skytwin
 
-Synthetic star-field images with satellite streaks, instrument defects and an exact answer key
-for every frame.
+**Synthetic star-field images with satellite streaks, instrument defects and an exact answer key
+for every frame.**
 
 [![CI](https://github.com/shaneryall/SkyTwin/actions/workflows/ci.yml/badge.svg)](https://github.com/shaneryall/SkyTwin/actions/workflows/ci.yml)
-[![PyPI](https://img.shields.io/pypi/v/skytwin)](https://pypi.org/project/skytwin/)
+[![PyPI](https://img.shields.io/pypi/v/skytwin?label=pypi)](https://pypi.org/project/skytwin/)
 [![crates.io](https://img.shields.io/crates/v/skytwin-cli)](https://crates.io/crates/skytwin-cli)
 [![License](https://img.shields.io/badge/license-GPL--3.0--or--later-blue)](LICENSE)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24544458.svg)](https://doi.org/10.5281/zenodo.24544458)
+
+[Install](#install) · [Quick start](#quick-start) ·
+[Tutorial](docs/tutorials/first-training-set.ipynb) · [Profiles](docs/reference/profile.md) ·
+[Labels](docs/labels.md) · [Documentation](https://shaneryall.github.io/SkyTwin/) ·
+[Changelog](CHANGELOG.md)
+
+</div>
 
 Skytwin is a simulator, written in Rust with Python bindings, of what a camera sees when it looks
 for satellites and other resident space objects, from orbit or from the ground. A frame from a
