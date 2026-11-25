@@ -67,7 +67,7 @@ version = "0.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b10a27c59c9901bb6dfd7ca1b6693abde4ce9c1f2d94c9607a650573d4d50f74"
 dependencies = [
- "fayde-core",
+ "fayde-core 0.3.3",
 ]
 
 [[package]]
@@ -75,6 +75,15 @@ name = "fayde-core"
 version = "0.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4dce84bd5b4be2a5aec4fbab27d4d027c56d18a8089e870ee9863cb3033e2dbe"
+dependencies = [
+ "libm",
+]
+
+[[package]]
+name = "fayde-core"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d8973cc0a096b97449da8185d0763a4bd1a9d507065f1e3c4b0e1d40be974b3a"
 dependencies = [
  "libm",
 ]
@@ -296,7 +305,7 @@ name = "skytwin-core"
 version = "0.1.0"
 dependencies = [
  "fayde-catalog",
- "fayde-core",
+ "fayde-core 0.4.0",
  "libm",
  "serde",
  "serde_json",
