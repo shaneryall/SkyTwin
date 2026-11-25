@@ -1,6 +1,8 @@
 # Skytwin
 
-Synthetic star-field images with satellite streaks, instrument defects and an exact answer key for every frame.
+**Synthetic star-field images with satellite streaks, instrument defects and an exact answer key for every frame.**
+
+[Install](#install) · [Quick start](#quick-start) · [Tutorial](https://shaneryall.github.io/SkyTwin/dev/tutorials/first-training-set/index.md) · [Profiles](https://shaneryall.github.io/SkyTwin/dev/reference/profile/index.md) · [Labels](https://shaneryall.github.io/SkyTwin/dev/labels/index.md) · [Documentation](https://shaneryall.github.io/SkyTwin/) · [Changelog](https://github.com/shaneryall/SkyTwin/blob/main/CHANGELOG.md)
 
 Skytwin is a simulator, written in Rust with Python bindings, of what a camera sees when it looks for satellites and other resident space objects, from orbit or from the ground. A frame from a real camera comes with no list of what is in it. A frame from Skytwin comes with a truth file that gives the position, path, flux and signal-to-noise ratio of every star, streak and target. That makes it a test bench for detectors, trackers and plate solvers (such as [Fayde](https://github.com/shaneryall/Fayde)), and a source of labelled training data for space domain awareness.
 
