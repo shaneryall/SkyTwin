@@ -1,0 +1,2892 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Synthetic star-field images with satellite streaks, instrument defects and an exact answer key for every frame.">
+      
+      
+      
+        <link rel="canonical" href="https://shaneryall.github.io/SkyTwin/dev/reference/profile/">
+      
+      
+        <link rel="prev" href="../../scene-format/">
+      
+      
+        <link rel="next" href="../../labels/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>Instrument profiles - Skytwin</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#instrument-profile-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Skytwin" class="md-header__button md-logo" aria-label="Skytwin" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Skytwin
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Instrument profiles
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/shaneryall/SkyTwin" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    shaneryall/SkyTwin
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Skytwin" class="md-nav__button md-logo" aria-label="Skytwin" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Skytwin
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/shaneryall/SkyTwin" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    shaneryall/SkyTwin
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Get started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Get started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/first-training-set/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Your first training set
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../export-training-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Export a training set
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../override-a-profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Use and override an instrument profile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn-a-profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learn a profile from real frames
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scene-format/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scene, truth and headers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Instrument profiles
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Instrument profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Values
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#profiles-as-contracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profiles as contracts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#profile-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profile layout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Blocks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Blocks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        processing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        noise
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noiseserial_lag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        noise.serial_lag
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#temperature_c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        temperature_c
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dark
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hot_pixels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hot_pixels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rts_pixels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rts_pixels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#radiation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        radiation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#readout_faults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        readout_faults
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cti" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cti
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisesmooth_field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        noise.smooth_field
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#camera" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        camera
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cameracolor_term" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        camera.color_term
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#camerapassband" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        camera.passband
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#psf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        psf
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        flat
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smear" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        smear
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saturation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        saturation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pointing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pointing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stray_light" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        stray_light
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zodiacal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        zodiacal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sampling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        detector
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        header
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Labels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../calibrate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    skytwin-calibrate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command-line reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algorithm sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Skytwin works
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    How Skytwin works
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/realism/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Realism
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/labels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Labels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/calibration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Calibration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validation and reproducibility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Values
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#profiles-as-contracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profiles as contracts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#profile-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profile layout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Blocks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Blocks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        processing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        noise
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noiseserial_lag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        noise.serial_lag
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#temperature_c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        temperature_c
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dark
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hot_pixels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hot_pixels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rts_pixels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rts_pixels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#radiation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        radiation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#readout_faults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        readout_faults
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cti" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cti
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisesmooth_field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        noise.smooth_field
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#camera" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        camera
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cameracolor_term" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        camera.color_term
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#camerapassband" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        camera.passband
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#psf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        psf
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        flat
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smear" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        smear
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saturation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        saturation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pointing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pointing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stray_light" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        stray_light
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zodiacal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        zodiacal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sampling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        detector
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        header
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="instrument-profile-reference">Instrument profile reference<a class="headerlink" href="#instrument-profile-reference" title="Permanent link">&para;</a></h1>
+<p>Every key an instrument profile may hold. Every block is optional, and leaving one out switches
+that defect off. <a href="../../override-a-profile/">Use and override an instrument profile</a> shows how a
+scene names a profile and changes it; <a href="../../design/realism/">design/realism.md</a> explains the
+models.</p>
+<h2 id="values">Values<a class="headerlink" href="#values" title="Permanent link">&para;</a></h2>
+<p>Wherever a defect block takes a number, it also takes a distribution; the numbers in the
+<a href="#camera"><code>camera</code></a> block are fixed. A defect setting such as <code>pedestal_adu</code> takes any of these
+forms:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"pedestal_adu"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span>
+<span class="nt">"pedestal_adu"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"normal"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">24</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="nt">"pedestal_adu"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"uniform"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">78</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="nt">"pedestal_adu"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"log_uniform"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">78</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="nt">"pedestal_adu"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"empirical"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w"> </span><span class="mi">31</span><span class="p">,</span><span class="w"> </span><span class="mi">78</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>To keep settings that go together together, draw them from the same row:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"pedestal_adu"</span><span class="p">:</span><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"empirical_linked"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"real_frame"</span><span class="p">,</span><span class="w"> </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">24</span><span class="p">,</span><span class="w"> </span><span class="mi">31</span><span class="p">,</span><span class="w"> </span><span class="mi">78</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<span class="nt">"extra_white_adu"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"empirical_linked"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"real_frame"</span><span class="p">,</span><span class="w"> </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">26</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="mi">43</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Every setting in one group takes the entry at the same index, so a frame that
+was measured warm and noisy stays warm and noisy. Lists in one group must
+have the same length.</p>
+<p>A distribution is drawn once per frame from the frame's seed, in its own
+stream, so changing a profile setting does not change the pixel noise. Detector maps
+(hot pixels, bad columns, flat field) use a separate, fixed <code>detector_seed</code>,
+so they stay the same from frame to frame, as on a real chip.</p>
+<h2 id="profiles-as-contracts">Profiles as contracts<a class="headerlink" href="#profiles-as-contracts" title="Permanent link">&para;</a></h2>
+<p>A profile is one JSON file holding everything tuned to a sensor, so it can
+be handed to someone else and used as is. Learned profiles also say what
+they are and what they need:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>schema_version</code></td>
+<td>Profile format (1)</td>
+</tr>
+<tr>
+<td><code>sensor</code></td>
+<td><code>name</code>, <code>platform</code>, <code>band_nm</code> <code>[from, to]</code>, <code>notes</code></td>
+</tr>
+<tr>
+<td><code>catalog</code></td>
+<td>The star catalogue the profile was calibrated against: <code>name</code>, <code>kind</code> (<code>csv</code> or <code>ucac4</code>), <code>mag_limit</code>, and for a CSV <code>columns</code>, <code>epoch_jyear</code>, <code>sha256</code>, <code>rows</code>; <code>source</code> says how to get or rebuild it</td>
+</tr>
+<tr>
+<td><code>learned</code></td>
+<td>Provenance: tool, version, commit, date, frames, inputs</td>
+</tr>
+</tbody>
+</table>
+<p>The zeropoint, colour term and magnitude limit hold for that catalogue
+only. A scene that gives only the catalogue file gets the rest from the profile (anything the
+scene gives wins). A catalogue of the other kind is refused unless the scene sets
+<code>"ignore_profile": true</code>. Each run's provenance file records the catalogue used (with the CSV's
+SHA-256) beside the one the profile names.</p>
+<h2 id="profile-layout">Profile layout<a class="headerlink" href="#profile-layout" title="Permanent link">&para;</a></h2>
+<p>Every key below is optional. Units are in the key names.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Settings</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code>, <code>description</code></td>
+<td>Name (written to the truth file) and free text</td>
+</tr>
+<tr>
+<td><code>detector_seed</code></td>
+<td>Seed for everything fixed to the chip: column offsets, hot and flickering pixels, pixel response, dust (default 0)</td>
+</tr>
+<tr>
+<td><code>camera</code></td>
+<td>Image size, pixel scale and parity, PSF core, exposure, zeropoint, sky, gain, read noise, bias, full well, pixel pitch, distortion, colour term, passband</td>
+</tr>
+<tr>
+<td><code>sky_e_per_s</code></td>
+<td>Diffuse light per pixel, drawn per frame (replaces <code>camera.sky</code>; a zodiacal table still takes precedence)</td>
+</tr>
+<tr>
+<td><code>processing</code></td>
+<td>What the ground pipeline did: bias subtraction, pedestal, clipping, output type</td>
+</tr>
+<tr>
+<td><code>noise</code></td>
+<td>Extra white noise, coherent patterns, row and column offsets, ramps, serial lag, fixed and smooth fields</td>
+</tr>
+<tr>
+<td><code>temperature_c</code></td>
+<td>CCD temperature per frame</td>
+</tr>
+<tr>
+<td><code>dark</code></td>
+<td>Dark current at a reference temperature and how it scales with temperature</td>
+</tr>
+<tr>
+<td><code>hot_pixels</code>, <code>rts_pixels</code></td>
+<td>Hot pixels, and flickering (random telegraph) pixels, fixed to the chip</td>
+</tr>
+<tr>
+<td><code>radiation</code></td>
+<td>Hit rate, its map by sub-satellite position, charge per µm of track, charge spread</td>
+</tr>
+<tr>
+<td><code>cti</code></td>
+<td>Serial and parallel charge-transfer inefficiency</td>
+</tr>
+<tr>
+<td><code>readout_faults</code></td>
+<td>Rows lost or garbled in read-out</td>
+</tr>
+<tr>
+<td><code>psf</code></td>
+<td>Wings and a power-law tail beyond the core, and growth across the field</td>
+</tr>
+<tr>
+<td><code>flat</code></td>
+<td>Vignetting, pixel response non-uniformity, dust shadows, field stop</td>
+</tr>
+<tr>
+<td><code>smear</code>, <code>saturation</code></td>
+<td>Smear while charge moves; what happens above full well</td>
+</tr>
+<tr>
+<td><code>pointing</code></td>
+<td>Wobble, drift, jumps, oscillations and roll during the exposure, unresolved jitter, and the error of the header pointing</td>
+</tr>
+<tr>
+<td><code>stray_light</code>, <code>zodiacal</code></td>
+<td>Light from the Earth, Sun and Moon by angle; zodiacal light table</td>
+</tr>
+<tr>
+<td><code>detector</code></td>
+<td>Where the image sits on the chip: chip size, window, binning</td>
+</tr>
+<tr>
+<td><code>header</code></td>
+<td>FITS header written in the instrument's style</td>
+</tr>
+<tr>
+<td><code>sampling</code></td>
+<td>How finely moving sources are sampled</td>
+</tr>
+<tr>
+<td><code>schema_version</code>, <code>sensor</code>, <code>catalog</code>, <code>learned</code></td>
+<td>What a learned profile is and needs (see <a href="#profiles-as-contracts">Profiles as contracts</a>)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="blocks">Blocks<a class="headerlink" href="#blocks" title="Permanent link">&para;</a></h2>
+<h3 id="processing"><code>processing</code><a class="headerlink" href="#processing" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Meaning</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bias_subtracted</code></td>
+<td>The bias level was removed before delivery</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>pedestal_adu</code></td>
+<td>Offset added after processing</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>output</code></td>
+<td>Pixel type written: <code>u16</code>, <code>i16</code>, <code>i32</code> or <code>f32</code></td>
+<td><code>u16</code></td>
+</tr>
+<tr>
+<td><code>clip_min_adu</code>, <code>clip_max_adu</code></td>
+<td>Values outside are set to these</td>
+<td>the output type's range</td>
+</tr>
+</tbody>
+</table>
+<p><code>u16</code> (0 to 65535) clips everything below 0, as many delivered products do.
+To keep the negative side of a bias-subtracted image, use <code>i16</code>, <code>i32</code> or
+<code>f32</code> and leave <code>clip_min_adu</code> unset. <code>f32</code> also keeps fractional values;
+the integer types round.</p>
+<h3 id="noise"><code>noise</code><a class="headerlink" href="#noise" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>extra_white_adu</code></td>
+<td>White Gaussian noise on top of the camera read noise, ADU RMS</td>
+</tr>
+<tr>
+<td><code>patterns</code></td>
+<td>Coherent plane waves <code>A cos(2π(x cos θ + y sin θ)/P + φ)</code>, each with <code>period_px</code>, <code>angle_deg</code>, <code>amplitude_adu</code>; φ is random per frame</td>
+</tr>
+<tr>
+<td><code>row_noise_adu</code></td>
+<td>A new offset per row each frame, ADU RMS</td>
+</tr>
+<tr>
+<td><code>column_noise_adu</code></td>
+<td>An offset per column fixed to the detector (<code>detector_seed</code>), ADU RMS</td>
+</tr>
+<tr>
+<td><code>ramp_y_adu</code>, <code>ramp_y_adu_per_s</code></td>
+<td>Linear ramp from bottom to top: a fixed read-out part plus a part growing with exposure, ADU</td>
+</tr>
+<tr>
+<td><code>ramp_x_adu</code></td>
+<td>Linear ramp from left to right, ADU</td>
+</tr>
+<tr>
+<td><code>serial_lag</code></td>
+<td>Slow settling of the read-out chain: <code>coefficient</code> <code>a</code> (0 to below 1) and <code>toward</code> (<code>left</code>, the default, or <code>right</code>, the side trails extend to). See below</td>
+</tr>
+<tr>
+<td><code>fixed_field</code></td>
+<td>Additive structure that is the same every frame (a curved read-out ramp, glow near an edge, a bias pattern): <code>values</code> (ADU, rows of nodes), <code>spacing_px</code>, <code>origin_px</code> (pixel of node <code>[0][0]</code>); interpolated bilinearly, held at the edge value beyond the grid</td>
+</tr>
+</tbody>
+</table>
+<p><code>sky_e_per_s</code> (top level, any per-frame value) is diffuse light per pixel
+that replaces <code>camera.sky</code>: unlike <code>processing.pedestal_adu</code> it passes
+through the flat (vignetting, field stop) and carries shot noise.</p>
+<h3 id="noiseserial_lag"><code>noise.serial_lag</code><a class="headerlink" href="#noiseserial_lag" title="Permanent link">&para;</a></h3>
+<p>A single-pole low-pass along each row of the read-out signal, in read
+order: out = (1 − a) · in + a · previous out. It acts on charge and read
+noise alike, so it trails every source by aᵈ at <code>d</code> pixels and correlates
+the noise along rows (lag-k correlation aᵏ) but not down columns. CTI moves
+charge only and leaves the noise white; this is the analogue chain (a slow
+preamplifier or video filter). Flux is kept, and white noise variance
+falls by (1 − a)/(1 + a).</p>
+<h3 id="temperature_c"><code>temperature_c</code><a class="headerlink" href="#temperature_c" title="Permanent link">&para;</a></h3>
+<p>The CCD temperature, °C, drawn per frame. Scales <code>dark</code> and <code>hot_pixels</code>.</p>
+<h3 id="dark"><code>dark</code><a class="headerlink" href="#dark" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>e_per_s_at_ref</code></td>
+<td>Dark current at the reference temperature, e⁻/pixel/s (replaces <code>camera.dark_e_per_s</code>)</td>
+</tr>
+<tr>
+<td><code>ref_temp_c</code></td>
+<td>Reference temperature, °C</td>
+</tr>
+<tr>
+<td><code>doubling_c</code></td>
+<td>Optional: double every this many °C instead of following the silicon band-gap law</td>
+</tr>
+</tbody>
+</table>
+<h3 id="hot_pixels"><code>hot_pixels</code><a class="headerlink" href="#hot_pixels" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>density_per_mpix</code></td>
+<td>Hot pixels per million pixels</td>
+</tr>
+<tr>
+<td><code>e_per_s_at_ref</code></td>
+<td>Each pixel's dark rate at the <code>dark</code> reference temperature, drawn once from <code>detector_seed</code></td>
+</tr>
+</tbody>
+</table>
+<p>The map is fixed to the detector; rates scale with the frame temperature
+like dark current.</p>
+<h3 id="rts_pixels"><code>rts_pixels</code><a class="headerlink" href="#rts_pixels" title="Permanent link">&para;</a></h3>
+<p>Flickering pixels: dark current that switches at random between a low and
+a high level (random telegraph signal), common after radiation damage.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>density_per_mpix</code></td>
+<td>Flickering pixels per million chip pixels (fixed by <code>detector_seed</code>)</td>
+</tr>
+<tr>
+<td><code>high_e_per_s_at_ref</code></td>
+<td>Extra rate in the high state at <code>ref_temp_c</code>, e⁻/s; scaled with temperature like dark current</td>
+</tr>
+<tr>
+<td><code>mean_high_s</code>, <code>mean_low_s</code></td>
+<td>Mean time in each state at <code>ref_temp_c</code></td>
+</tr>
+<tr>
+<td><code>activation_high_ev</code>, <code>activation_low_ev</code></td>
+<td>Arrhenius activation energies of the switching: time constants shrink as the chip warms; different values change the fraction of time spent high</td>
+</tr>
+</tbody>
+</table>
+<p>Each frame simulates the switching over the exposure. The truth file lists
+the pixels that were on and their mean rate.</p>
+<h3 id="radiation"><code>radiation</code><a class="headerlink" href="#radiation" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Meaning</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rate_per_cm2_s</code></td>
+<td>Hit rate when there is no map or no orbiting observer</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rate_map</code></td>
+<td>Rate table by sub-satellite latitude and longitude (<code>lat_edges_deg</code>, <code>lon_edges_deg</code>, <code>rate_per_cm2_s</code> rows)</td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>map_scale</code></td>
+<td>Factor on the map, drawn per frame: an empirical distribution gives storms and belt edges, frames far above their cell's usual rate</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>collect_time_s</code></td>
+<td>Time hits accumulate</td>
+<td>the exposure</td>
+</tr>
+<tr>
+<td><code>readout_s</code></td>
+<td>Read-out time: each row keeps collecting hits until it is read, so hit density rises linearly to the last row read, which gets this much more time</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>first_row</code></td>
+<td>Row read first: <code>bottom</code> (row 0) or <code>top</code></td>
+<td><code>bottom</code></td>
+</tr>
+<tr>
+<td><code>depth_um</code></td>
+<td>Sensitive silicon depth: sets track length from the incidence angle</td>
+<td>15</td>
+</tr>
+<tr>
+<td><code>e_per_um</code></td>
+<td>Most probable charge per µm of track</td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>landau_scale</code></td>
+<td>Relative width of the charge straggling (Moyal)</td>
+<td>0.15</td>
+</tr>
+<tr>
+<td><code>diffusion_px</code></td>
+<td>Charge spread, Gaussian σ</td>
+<td>0.4</td>
+</tr>
+</tbody>
+</table>
+<p>The sub-satellite point needs <code>scene.time</code> and an orbiting <code>scene.observer</code>.
+State vectors may be Earth-fixed (<code>"frame": "itrs"</code>), as spacecraft headers
+often give them. The truth file lists every hit and the sub-satellite point.</p>
+<h3 id="readout_faults"><code>readout_faults</code><a class="headerlink" href="#readout_faults" title="Permanent link">&para;</a></h3>
+<p>Rows lost or garbled after digitisation, as a link or memory fault leaves
+them.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Meaning</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>probability</code></td>
+<td>Fraction of frames with any corruption</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bands</code></td>
+<td>Bands in a corrupted frame</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>band_rows</code></td>
+<td>Rows per band</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>kind_weights</code></td>
+<td>Relative weights of <code>[noise, dropped, saturated]</code>: salt and pepper (each pixel at the low clip or anywhere up to the high one), rows at the low clip, rows at the high clip</td>
+<td><code>[1, 1, 1]</code></td>
+</tr>
+<tr>
+<td><code>truncate_probability</code></td>
+<td>Chance that a corrupted frame is also cut short: every row from a random row to the last reads at the low clip</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>noise_low_fraction</code></td>
+<td>In a <code>noise</code> band, the share of pixels read at the low clip</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td><code>noise_rms_adu</code></td>
+<td>In a <code>noise</code> band, the other pixels: unset, uniform over the whole output range (salt and pepper); set, the row's own value plus Gaussian noise of this RMS (drawn per band). With float output and no clip, garbled rows span the frame's own values</td>
+<td>unset</td>
+</tr>
+</tbody>
+</table>
+<p>The truth file lists each band (<code>readout_bands</code>: <code>first</code>, <code>last</code>, <code>kind</code>).</p>
+<h3 id="cti"><code>cti</code><a class="headerlink" href="#cti" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>serial</code>, <code>parallel</code></td>
+<td>Each with <code>loss_per_transfer</code> and <code>trail_px</code> (mean release distance)</td>
+</tr>
+<tr>
+<td><code>amp_right</code>, <code>register_bottom</code></td>
+<td>Where charge is read out; trails point away from it</td>
+</tr>
+</tbody>
+</table>
+<h3 id="noisesmooth_field"><code>noise.smooth_field</code><a class="headerlink" href="#noisesmooth_field" title="Permanent link">&para;</a></h3>
+<p>Smooth random background structure, new every frame: Gaussian values on a
+grid <code>scale_px</code> apart, interpolated with cubic B-splines, then set to zero
+mean and exactly <code>rms_adu</code> RMS over the frame. Real frames carry it from
+unresolved sources, scattered light and read-out drifts; without it,
+simulated backgrounds are too smooth.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rms_adu</code></td>
+<td>RMS over the frame, ADU</td>
+</tr>
+<tr>
+<td><code>scale_px</code></td>
+<td>Grid spacing (feature size), pixels</td>
+</tr>
+</tbody>
+</table>
+<h3 id="camera"><code>camera</code><a class="headerlink" href="#camera" title="Permanent link">&para;</a></h3>
+<p>The numbers in <code>camera</code> are fixed; they don't take a distribution.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Meaning</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>width</code>, <code>height</code></td>
+<td>Image size, pixels</td>
+<td>1024, 1024</td>
+</tr>
+<tr>
+<td><code>pixel_scale_arcsec</code></td>
+<td>Pixel scale, arcsec per pixel</td>
+<td>3.0</td>
+</tr>
+<tr>
+<td><code>parity</code></td>
+<td>Handedness on the sky: <code>negative</code> (north up, east left) or <code>positive</code> (mirrored)</td>
+<td><code>negative</code></td>
+</tr>
+<tr>
+<td><code>optical_axis_px</code></td>
+<td>Pixel <code>[x, y]</code> (0-based) on the optical axis, where the pointing is</td>
+<td>image centre</td>
+</tr>
+<tr>
+<td><code>distortion</code></td>
+<td>Radial distortion about the optical axis: <code>k1</code>, <code>k2</code> (coefficients of ρ² and ρ⁴, ρ in units of <code>radius_px</code>), <code>radius_px</code>; negative <code>k1</code> is barrel</td>
+<td>none (pure TAN)</td>
+</tr>
+<tr>
+<td><code>fwhm_px</code></td>
+<td>PSF core full width at half maximum, pixels</td>
+<td>2.5</td>
+</tr>
+<tr>
+<td><code>exposure_s</code></td>
+<td>Exposure time, s; 0 makes a bias frame, which can hold no stars, streaks or targets</td>
+<td>10.0</td>
+</tr>
+<tr>
+<td><code>zeropoint_mag</code></td>
+<td>Magnitude giving 1 e⁻/s in total, all losses folded in</td>
+<td>20.0</td>
+</tr>
+<tr>
+<td><code>sky</code></td>
+<td>Sky background: <code>{"e_per_s": …}</code> per pixel or <code>{"mag_per_arcsec2": …}</code></td>
+<td><code>{"mag_per_arcsec2": 22.5}</code></td>
+</tr>
+<tr>
+<td><code>dark_e_per_s</code></td>
+<td>Dark current, e⁻ per pixel per second (replaced by <code>dark</code>)</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td><code>read_noise_e</code></td>
+<td>Read noise, e⁻ RMS</td>
+<td>8.0</td>
+</tr>
+<tr>
+<td><code>gain_e_per_adu</code></td>
+<td>Gain, e⁻ per ADU</td>
+<td>1.5</td>
+</tr>
+<tr>
+<td><code>bias_adu</code></td>
+<td>Bias level, ADU</td>
+<td>1000.0</td>
+</tr>
+<tr>
+<td><code>full_well_e</code></td>
+<td>Full well, e⁻; pixels clip here before digitising</td>
+<td>60,000</td>
+</tr>
+<tr>
+<td><code>pixel_pitch_um</code></td>
+<td>Pixel pitch, µm; sets the area radiation hits fall on</td>
+<td>13.0</td>
+</tr>
+<tr>
+<td><code>quantum_efficiency</code></td>
+<td>Electrons per incident photon, for photon counts in the truth; the zeropoint stays in electrons</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td><code>sun_mag</code></td>
+<td>The Sun's magnitude in the camera band, for light reflected by targets</td>
+<td>−26.74 (V)</td>
+</tr>
+<tr>
+<td><code>earth_limb_margin_km</code></td>
+<td>Height above the surface below which a line of sight counts as blocked, km</td>
+<td>100</td>
+</tr>
+<tr>
+<td><code>color_term</code></td>
+<td>Catalogue-to-camera colour term (below)</td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>passband</code></td>
+<td>Passband and collecting area (below); replaces <code>zeropoint_mag</code> and <code>sun_mag</code></td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cameracolor_term"><code>camera.color_term</code><a class="headerlink" href="#cameracolor_term" title="Permanent link">&para;</a></h3>
+<p>Moves catalogue magnitudes to the camera band:
+<code>m_camera = m_catalogue + coefficient × colour index</code>. <code>bands</code> names the two
+catalogue bands of the index (first minus second, for example
+<code>["apass_b", "apass_v"]</code>); catalogue stars get their index from those
+bands, and <code>default_index</code> serves stars without both. Without <code>bands</code>,
+stars take the catalogue's own colour column (a CSV catalogue's <code>bp_rp</code>).
+Scene stars may give <code>color_index</code>. The truth file records each star's
+index.</p>
+<h3 id="camerapassband"><code>camera.passband</code><a class="headerlink" href="#camerapassband" title="Permanent link">&para;</a></h3>
+<p>A passband replaces <code>camera.zeropoint_mag</code> and <code>camera.sun_mag</code> with values
+computed by synthetic photometry in AB magnitudes:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>Written as <code>FILTER</code></td>
+</tr>
+<tr>
+<td><code>response</code></td>
+<td><code>wavelength_nm</code> and <code>throughput</code> (0–1): optics × filter × quantum efficiency</td>
+</tr>
+<tr>
+<td><code>aperture_area_m2</code></td>
+<td>Collecting area</td>
+</tr>
+<tr>
+<td><code>reference</code></td>
+<td>Optional curve of the band magnitudes are given in, such as the catalogue's; stars move to the camera band by their temperature</td>
+</tr>
+<tr>
+<td><code>color_index</code></td>
+<td><code>b_v</code> or <code>bp_rp</code>: what a star's <code>color_index</code> is, to get its temperature</td>
+</tr>
+<tr>
+<td><code>color_bands</code></td>
+<td>UCAC4 bands of that index (first minus second)</td>
+</tr>
+<tr>
+<td><code>default_teff_k</code></td>
+<td>Temperature for stars without one (default 5800 K)</td>
+</tr>
+</tbody>
+</table>
+<p>The zeropoint is the AB magnitude giving 1 e⁻/s,
+<code>2.5 log10(A/h ∫ 3631 Jy T(λ) dλ/λ)</code>. Sources are blackbodies: stars at
+their temperature (scene <code>teff_k</code>, else from the colour index, else the
+default), the Sun at 5772 K and 1 au, so reflected light from targets
+follows the band. A star's camera magnitude is its reference magnitude plus
+the difference of the two bands' AB magnitudes for its blackbody, tabulated
+over 2000–50,000 K. Give either <code>color_term</code> or <code>reference</code>, not both. The
+header adds <code>MAGSYS = 'AB'</code>; <code>MAGZERO</code> is the computed zeropoint.</p>
+<h3 id="psf"><code>psf</code><a class="headerlink" href="#psf" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>wings</code></td>
+<td>Wider Gaussian components, each with <code>fraction</code> (share of the flux) and <code>fwhm_px</code>; the core (<code>camera.fwhm_px</code>) keeps the rest</td>
+</tr>
+<tr>
+<td><code>tail</code></td>
+<td>A power-law (Moffat) tail: <code>fraction</code>, <code>fwhm_px</code>, <code>beta</code> (wings fall as r^−2β, β &gt; 1); expanded into ten Gaussians fitted to the profile out to 12 FWHM</td>
+</tr>
+<tr>
+<td><code>field.radial_growth</code>, <code>field.tangential_growth</code></td>
+<td>Fractional growth of every component's σ along and across the radius from the optical axis, reached at the image's half-diagonal (quadratic in radius, like coma and astigmatism)</td>
+</tr>
+</tbody>
+</table>
+<p>Every component is pixel-integrated and applies to stars, trails, streaks
+and targets alike. A field-dependent PSF is an elliptical Gaussian.</p>
+<h3 id="flat"><code>flat</code><a class="headerlink" href="#flat" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>vignetting</code></td>
+<td><code>[a2, a4]</code>: response <code>1 + a2 ρ² + a4 ρ⁴</code>, ρ the distance from the optical axis in half-diagonals</td>
+</tr>
+<tr>
+<td><code>prnu_rms</code></td>
+<td>Pixel response non-uniformity, fractional RMS, fixed to each chip pixel</td>
+</tr>
+<tr>
+<td><code>dust</code></td>
+<td>Out-of-focus dust shadows (annular "donuts") fixed to the chip: <code>density_per_mpix</code>, <code>radius_px</code>, <code>depth</code> (fraction of light removed), <code>hole_fraction</code> (inner radius over outer)</td>
+</tr>
+<tr>
+<td><code>field_stop</code></td>
+<td>A circular aperture imaged on the chip: <code>radius_px</code> (half response), <code>edge_px</code> (Gaussian σ of the edge), <code>outside</code> (response beyond, as a fraction of inside), <code>centre_px</code> (default: the optical axis). Response <code>outside + (1 − outside) · ½ erfc((r − radius) / (√2 edge))</code></td>
+</tr>
+</tbody>
+</table>
+<p>The flat multiplies light only. <code>skytwin … --write-flat</code> also writes the
+noiseless flat as <code>name.flat.fits</code> (32-bit floats), for testing
+flat-fielding. The truth file lists the dust shadows. With
+<code>hole_fraction</code> 0 the shadows are solid dark blobs, as dust closer to
+focus casts.</p>
+<h3 id="smear"><code>smear</code><a class="headerlink" href="#smear" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>above_s_per_row</code></td>
+<td>Seconds each row's charge spends under a source while moving, for pixels above it (higher row numbers)</td>
+</tr>
+<tr>
+<td><code>below_s_per_row</code></td>
+<td>The same for pixels below it</td>
+</tr>
+</tbody>
+</table>
+<p>Without a shutter, light keeps falling while charge is flushed before the
+exposure and transferred after it. A source of rate R e⁻/s then adds
+R × dwell to every pixel of its column, on each side. Only light smears:
+dark current and hot pixels are added afterwards.</p>
+<h3 id="saturation"><code>saturation</code><a class="headerlink" href="#saturation" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Meaning</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bleed</code></td>
+<td>Charge above <code>camera.full_well_e</code> spills along the column, half each way, conserving charge</td>
+<td><code>false</code> (excess lost)</td>
+</tr>
+<tr>
+<td><code>serial_overflow</code></td>
+<td>A share of the excess spills along the row first, as when the serial register overflows, drawing a horizontal line from a saturated star: <code>fraction</code> of the excess, exponential <code>length_px</code>, <code>toward</code> <code>left</code> (default) or <code>right</code></td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<p>If the ADC saturates before the pixel's full well, as on some cameras, set
+<code>processing.clip_max_adu</code> to the ADC limit and leave <code>bleed</code> off.</p>
+<h3 id="pointing"><code>pointing</code><a class="headerlink" href="#pointing" title="Permanent link">&para;</a></h3>
+<p>Motion of the whole image during the exposure, and the error of the
+pointing written to the header.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>wobble_rms_arcsec</code>, <code>wobble_time_s</code></td>
+<td>Smooth random wander per axis (Ornstein–Uhlenbeck), RMS and correlation time (default 1 s)</td>
+</tr>
+<tr>
+<td><code>drift_arcsec_per_s</code></td>
+<td>Steady rate in a random direction, zero at mid-exposure</td>
+</tr>
+<tr>
+<td><code>drift_turn_deg_per_s</code></td>
+<td>Rate at which the drift direction turns, in a random sense: the image moves along a circular arc of radius rate / turn rate, and every star trails in the same arc</td>
+</tr>
+<tr>
+<td><code>roll_rate_deg_per_s</code>, <code>roll_centre_px</code></td>
+<td>Rotation of the image about a pixel (default: the image centre), in a random sense, zero at mid-exposure: stars trail in arcs centred there, longer the farther they are from it</td>
+</tr>
+<tr>
+<td><code>jump_rate_per_s</code>, <code>jump_arcsec</code></td>
+<td>Sudden offsets at random times, random directions</td>
+</tr>
+<tr>
+<td><code>blur_arcsec</code></td>
+<td>Unresolved fast jitter: a Gaussian σ added to every PSF component</td>
+</tr>
+<tr>
+<td><code>oscillations</code></td>
+<td>Sinusoids, each <code>amplitude_arcsec</code>, <code>period_s</code> and <code>angle_deg</code> on the image (default random per frame), random phase. The image dwells at the turning points: along a trail they draw dashes, across it a zigzag or, when fast, two parallel trails</td>
+</tr>
+<tr>
+<td><code>header.reference_px</code></td>
+<td>Pixel whose sky position the reported RA/Dec describe (default: image centre)</td>
+</tr>
+<tr>
+<td><code>header.error_arcsec</code>, <code>header.roll_error_deg</code></td>
+<td>Random error of the reported pointing (σ per axis) and roll</td>
+</tr>
+<tr>
+<td><code>header.epoch</code></td>
+<td>When the reported pointing applies: <code>start</code>, <code>mid</code> (default) or <code>end</code> of the exposure</td>
+</tr>
+</tbody>
+</table>
+<p>Motion moves stars, targets and streaks; it does not move radiation hits or
+hot pixels, which belong to the detector. The path is measured from the
+image at mid-exposure: whatever wobble, oscillation or jumps came before,
+the image is then where it would be without motion, so the star positions
+in the truth and the header WCS describe that moment. Trail ends, streak
+ends and target samples in the truth are where each source was drawn,
+motion included. The truth file keeps the offset path (thinned), every
+jump, and the turn and roll rates. The header's <code>ATT_RA</code>, <code>ATT_DEC</code>,
+<code>ATT_ROLL</code> carry the reported pointing; the truth file keeps both the true
+and the reported pointing.</p>
+<p><code>camera.parity</code> (<code>negative</code>, the default, or <code>positive</code>) mirrors the image
+for optics that flip it; roll stays the position angle of +y.</p>
+<p><code>camera.distortion</code> adds radial lens distortion about the optical axis: a
+point the TAN projection puts <code>r</code> pixels from the axis lands at
+<code>r (1 + k1 ρ² + k2 ρ⁴)</code>, ρ = r / <code>radius_px</code> (<code>k1</code> negative: barrel;
+positive: pincushion). Every star, target, streak and truth position goes
+through it, and the header WCS becomes TAN-SIP with order-5 <code>A</code>/<code>B</code> and
+<code>AP</code>/<code>BP</code> terms fitted to the model over the disc of <code>radius_px</code> (use the
+half-diagonal so the whole frame is covered).</p>
+<h3 id="stray_light"><code>stray_light</code><a class="headerlink" href="#stray_light" title="Permanent link">&para;</a></h3>
+<p>A list, one entry per body. Needs <code>scene.time</code>, an orbiting
+<code>scene.observer</code> and a pointing.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>body</code></td>
+<td><code>earth</code> (angle to the nearest limb), <code>sun</code> or <code>moon</code> (angle to the centre)</td>
+</tr>
+<tr>
+<td><code>angle_deg</code>, <code>e_per_s</code></td>
+<td>Level at the image centre against angle, e⁻/pixel/s; log-interpolated, held below the table, zero beyond it</td>
+</tr>
+<tr>
+<td><code>gradient</code></td>
+<td>How much brighter the bright edge is than the centre, across half the frame width (0.2 = 20%)</td>
+</tr>
+<tr>
+<td><code>toward_deg</code></td>
+<td>Direction of the bright side relative to the body's direction in the image: 0 towards it, 180 away from it</td>
+</tr>
+<tr>
+<td><code>dark_limb_factor</code></td>
+<td>Earth: factor when the nearest limb point is in darkness</td>
+</tr>
+<tr>
+<td><code>phase_scaled</code></td>
+<td>Moon: scale by the illuminated fraction (default true)</td>
+</tr>
+</tbody>
+</table>
+<p>The truth file records each source's angle, level, image direction and
+whether the limb was lit (Moon: lit fraction).</p>
+<h3 id="zodiacal"><code>zodiacal</code><a class="headerlink" href="#zodiacal" title="Permanent link">&para;</a></h3>
+<p>A table of zodiacal surface brightness, V mag/arcsec², with
+<code>elongation_deg</code> (|λ − λ☉|), <code>latitude_deg</code> (|β|) and <code>v_mag_arcsec2</code> rows
+by elongation. With a time and an observer it replaces <code>camera.sky</code>; the V
+value is moved to the camera band through <code>camera.sun_mag</code>, since zodiacal
+light has the Sun's colour. Skytwin ships no table: fill it from a
+published reference such as Leinert et al. (1998), table 17.</p>
+<h3 id="sampling"><code>sampling</code><a class="headerlink" href="#sampling" title="Permanent link">&para;</a></h3>
+<p>How finely moving sources (streaks, trails, targets) are cut into exact
+straight pieces.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Meaning</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pixel_tolerance</code></td>
+<td>Largest distance between the true path and a piece, px</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td><code>flux_relative_tolerance</code></td>
+<td>Largest relative brightness error over a piece</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td><code>max_step_s</code></td>
+<td>Longest piece, s</td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>max_depth</code></td>
+<td>Deepest halving of a piece</td>
+<td>14</td>
+</tr>
+</tbody>
+</table>
+<h3 id="detector"><code>detector</code><a class="headerlink" href="#detector" title="Permanent link">&para;</a></h3>
+<p>Where the delivered image sits on the chip.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Meaning</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>chip_px</code></td>
+<td>Chip size, unbinned pixels</td>
+<td>the image size</td>
+</tr>
+<tr>
+<td><code>window_origin_px</code></td>
+<td>Chip pixel of the image's first pixel, unbinned, 0-based</td>
+<td><code>[0, 0]</code></td>
+</tr>
+<tr>
+<td><code>binning</code></td>
+<td>Binning <code>[x, y]</code></td>
+<td><code>[1, 1]</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>camera</code> describes the delivered image (its size, pixel scale and PSF are in
+binned pixels). The layout moves the chip's own effects into place: hot
+pixels belong to the chip, so two windows of one chip share them (binned
+pixels sum theirs); radiation hits see the binned pixel area and track
+length; CTI counts transfers from the window's real distance to the
+amplifier and register. <code>camera.optical_axis_px</code> puts the pointing on a
+given image pixel instead of the centre.</p>
+<h3 id="header"><code>header</code><a class="headerlink" href="#header" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Meaning</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>wcs</code></td>
+<td>Write the WCS</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>skytwin_keywords</code></td>
+<td>Write Skytwin's own keywords (times, observer, attitude, seed)</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>roll</code></td>
+<td><code>keyword</code>, <code>offset_deg</code>, <code>sign</code>: the roll in the instrument's convention, <code>offset + sign × roll</code></td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>cards</code></td>
+<td>Extra cards in order: <code>key</code>, <code>value</code>, <code>comment</code></td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>sexagesimal_carry</code></td>
+<td>Carry rounded seconds into the minutes. <code>false</code> copies a common formatter bug: 59.96 s is written <code>60.0</code>, about one frame in 600 per field</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>wrong_wcs</code></td>
+<td>Write a wrong WCS on some frames, as another solver's failed solution: <code>probability</code>, <code>offset_arcmin</code> (tangent point moved, random direction), <code>roll_deg</code> (axes turned, either way), <code>scale_error</code></td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<p>A card value is a number, a boolean, a string, or a template computed from
+the frame: <code>{date_obs}</code>, <code>{jd_obs}</code>, <code>{mjd_obs}</code>, <code>{exposure_s}</code>,
+<code>{ccd_temp_c}</code>, <code>{ccd_temp_k}</code>, <code>{ra_deg}</code>, <code>{dec_deg}</code>, <code>{roll_deg}</code>,
+<code>{ra_hms}</code>, <code>{dec_dms}</code> (option <code>:space</code> for <code>hh mm ss.s</code>),
+<code>{sub_lat_deg}</code>, <code>{sub_lon_deg}</code>, <code>{earth_limb_deg}</code>, <code>{binning_x}</code>,
+<code>{binning_y}</code>. Option <code>:str</code> writes a number as a quoted string. A
+template whose value the frame lacks (no time, no observer) is left out. A
+card named like one of Skytwin's own keywords replaces it.</p>
+<p>With <code>wrong_wcs</code>, the truth file keeps the true <code>wcs</code> and adds the
+<code>header_wcs</code> that was written instead. A scene's <code>header_bias_arcsec</code>
+(<code>[east, north]</code>) shifts the reported RA/Dec from the true pointing, on top
+of <code>pointing.header.error_arcsec</code>: a header that lags the boresight.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.sections", "navigation.top", "search.highlight"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  <script data-mkdocs-jupyter-mathjax="{&quot;url&quot;: &quot;https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-mml-chtml.js&quot;, &quot;version&quot;: 4}">
+/* Shared by full pages and Material's instant navigation. */
+(() => {
+  const config = JSON.parse(document.currentScript.dataset.mkdocsJupyterMathjax);
+  if (window.mkdocsJupyterMathJax) return;
+
+  let loading;
+  let queue = Promise.resolve();
+  let previous = [];
+
+  const ready = async () => {
+    if (!loading) {
+      loading = (async () => {
+        let math = window.MathJax;
+        if (!math?.typesetPromise) {
+          const url = new URL(config.url, document.baseURI).href;
+          const existing = Array.from(document.scripts).find(script =>
+            script.src && (script.src === url || script.id === 'MathJax-script' ||
+              (/mathjax/i.test(script.src) &&
+               /\/(?:MathJax|latest|(?:tex|mml)(?:-mml)?-(?:chtml|svg))\.js(?:[?#]|$)/i.test(script.src))));
+          if (existing) {
+            if (!math?.startup?.promise) {
+              await new Promise((resolve, reject) => {
+                existing.addEventListener('load', resolve, { once: true });
+                existing.addEventListener('error', reject, { once: true });
+              });
+            }
+          } else {
+            // Keep site macros, delimiters and startup hooks when supplied.
+            const options = math || {};
+            window.MathJax = {
+              ...options,
+              loader: {
+                ...options.loader,
+                load: Array.from(new Set(['ui/safe', ...(options.loader?.load || [])]))
+              },
+              startup: { typeset: false, ...options.startup },
+              tex: {
+                tags: 'ams',
+                useLabelIds: true,
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true,
+                ...options.tex
+              }
+            };
+            await new Promise((resolve, reject) => {
+              const script = document.createElement('script');
+              script.src = config.url;
+              script.id = 'MathJax-script';
+              script.async = true;
+              script.onload = resolve;
+              script.onerror = reject;
+              document.head.appendChild(script);
+            });
+          }
+        }
+        math = window.MathJax;
+        await math.startup.promise;
+        return math;
+      })();
+    }
+    const math = await loading;
+    // A site owner can extend the v3 queue again on each navigation.
+    await math.startup.promise;
+    return math;
+  };
+
+  const unrendered = node => {
+    if (node.matches('mjx-container')) return [];
+    if (!node.querySelector('mjx-container')) return [node];
+    // In v3, scanning generated assistive MathML again produces nested output.
+    return Array.from(node.children).flatMap(unrendered);
+  };
+
+  const refresh = () => {
+    // A separate chain also serializes v3, without changing v4's startup promise.
+    queue = queue.then(async () => {
+      const notebooks = Array.from(document.querySelectorAll('.jupyter-wrapper'));
+      if (!notebooks.length && !previous.length) return;
+      if (notebooks.length === previous.length &&
+          notebooks.every((node, index) => node === previous[index])) return;
+      const math = await ready();
+      if (previous.length) {
+        math.typesetClear(previous);
+        math.texReset();
+      }
+      previous = notebooks.filter(node => node.isConnected);
+      const pending = previous.flatMap(unrendered);
+      if (pending.length) await math.typesetPromise(pending);
+    }).catch(error => console.error('mkdocs-jupyter: MathJax rendering failed', error));
+    return queue;
+  };
+
+  window.mkdocsJupyterMathJax = { refresh };
+  const start = () => {
+    if (typeof document$ !== 'undefined') document$.subscribe(refresh);
+    else refresh();
+  };
+  // Theme bundles and user-provided MathJax scripts can follow notebook content.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start, { once: true });
+  } else start();
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,1701 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Synthetic star-field images with satellite streaks, instrument defects and an exact answer key for every frame.">
+      
+      
+      
+        <link rel="canonical" href="https://shaneryall.github.io/SkyTwin/dev/design/calibration/">
+      
+      
+        <link rel="prev" href="../labels/">
+      
+      
+        <link rel="next" href="../../validation/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>Calibration - Skytwin</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#how-skytwin-calibrate-learns-a-profile" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Skytwin" class="md-header__button md-logo" aria-label="Skytwin" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Skytwin
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Calibration
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/shaneryall/SkyTwin" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    shaneryall/SkyTwin
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Skytwin" class="md-nav__button md-logo" aria-label="Skytwin" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Skytwin
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/shaneryall/SkyTwin" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    shaneryall/SkyTwin
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Get started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Get started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/first-training-set/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Your first training set
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../export-training-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Export a training set
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../override-a-profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Use and override an instrument profile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn-a-profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learn a profile from real frames
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scene-format/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scene, truth and headers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Instrument profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Labels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/calibrate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    skytwin-calibrate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command-line reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/python-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algorithm sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Skytwin works
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    How Skytwin works
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../realism/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Realism
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../labels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Labels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Calibration
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Calibration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-learn-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The learn pipeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blocks-fitted-indirectly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Blocks fitted indirectly
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Blocks fitted indirectly">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#background-light-pedestal-and-fixed-field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Background light, pedestal and fixed field
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serial-lag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Serial lag
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smooth-background-field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Smooth background field
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colour-term" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Colour term
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-a-catalogue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing a catalogue
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calibration-frames" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Calibration frames
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frames-whose-stars-trail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frames whose stars trail
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ground-frames" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ground frames
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-cramérrao-bound-in-scores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Cramér–Rao bound in scores
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validation and reproducibility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-learn-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The learn pipeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blocks-fitted-indirectly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Blocks fitted indirectly
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Blocks fitted indirectly">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#background-light-pedestal-and-fixed-field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Background light, pedestal and fixed field
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serial-lag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Serial lag
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smooth-background-field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Smooth background field
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colour-term" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Colour term
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-a-catalogue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing a catalogue
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calibration-frames" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Calibration frames
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frames-whose-stars-trail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frames whose stars trail
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ground-frames" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ground frames
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-cramérrao-bound-in-scores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Cramér–Rao bound in scores
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="how-skytwin-calibrate-learns-a-profile">How skytwin-calibrate learns a profile<a class="headerlink" href="#how-skytwin-calibrate-learns-a-profile" title="Permanent link">&para;</a></h1>
+<p>Every number comes from measuring frames: real frames to set the profile,
+and simulated frames, measured with the same code, to check and correct
+it. Nothing about a particular instrument is built in. Its header names go
+in a keyword map; its measured profile stays with you.</p>
+<p>The steps for running it are in <a href="../../learn-a-profile/">learn-a-profile.md</a>, its commands in
+the <a href="../../reference/calibrate/">calibrate reference</a>, and every option in the
+<a href="../../reference/cli/#skytwin-calibrate-learn">command-line reference</a>.</p>
+<h2 id="the-learn-pipeline">The learn pipeline<a class="headerlink" href="#the-learn-pipeline" title="Permanent link">&para;</a></h2>
+<p><code>learn</code> runs these steps in order:</p>
+<ol>
+<li>Headers: finds exposure, time, temperature (°C or K), sub-satellite
+   point, Earth-limb angle, spacecraft position and velocity (and their
+   frame, preferring the exposure start), pointing, roll, tracking rate,
+   gain, read noise, binning, pixel size and pixel scale, by scoring every
+   card on its name and its comment. The pixel size is taken as after
+   binning (as <code>XPIXSZ</code> is) unless its comment says otherwise.</li>
+<li>Frames: keeps the most common size and binning; other modes are
+   listed, to learn separately.</li>
+<li>Camera: gain, read noise, pixel scale and exposure from headers;
+   leading columns that get no light; pixel type; the saturation level
+   (where frame maxima pile up).
+   Then the read-out chain: a serial lag (noise correlated along rows
+   as aᵏ, sources trailing one way: <code>noise.serial_lag</code>), and, when the
+   headers give no gain, gain and read noise by photon transfer from
+   pairs of frames with the same exposure, taken up to 1.5 times the
+   archive's usual spacing apart (5 to 60 s): the clipped block variance of
+   the difference against level, over the central half of the frame, with
+   the lag's variance reduction undone. On frames with the bias still in,
+   the read noise comes from the darkest frames.</li>
+<li>Statistics: background, noise, ramps, pattern noise and sharp events
+   per frame (<code>measure</code>). On frames whose bias sits below the clip, noise
+   comes from quantiles above the clip, where the MAD would read 0. Rows
+   the read-out corrupted (salt-and-pepper bands, dropped rows) are counted
+   and kept out of the sharp events; each row's spread comes from
+   neighbouring-pixel differences, so glare gradients and dense radiation
+   storms are not mistaken for corruption. The odd/even row offset (even
+   rows' level minus their odd neighbours') is measured per frame. The
+   corrupted bands found (rows, and whether noise, dropped or saturated)
+   become <code>readout_faults</code>.</li>
+<li>Detector: hot pixels from the median, over 150 frames, of each pixel's
+   excess over its neighbours, and how their rates follow temperature, from
+   the longest exposures that number at least 10 frames (a row's dark charge
+   while it waits to be read does not scale with the exposure, so short
+   frames would inflate the rates); the flat field (a circular field stop if
+   there is one, vignetting inside it, and pixel response non-uniformity)
+   from how each pixel follows the frame level; the PSF from frames whose
+   stars measure round (with any serial lag undone first), picked from all
+   the inputs by their header tracking rate; frame-transfer smear from the
+   column excess above and below bright unsaturated stars (corrected against
+   simulated frames with <code>--skytwin</code>).</li>
+<li>Pointing: when the frames carry their own celestial WCS (an
+   archive's Astrometry.net solutions, say), at least 20 of them do, and
+   <code>--skytwin</code> and a catalogue (<code>--catalog</code> or <code>--ucac4</code>) are given, stars
+   are matched to the catalogue through it, and a joint
+   fit over up to 80 frames (per frame an affine map of tangent-plane
+   coordinates, shared radial distortion about the image centre) gives the
+   pixel scale, parity, <code>camera.distortion</code> (kept when k1 is 5σ from
+   zero) and the photometric zeropoint. This works where a fresh plate
+   solve fails (fields tens of degrees wide, a few dozen bright stars).
+   Otherwise, with <code>--ucac4</code> (a CSV catalogue is not enough) and Fayde
+   (<code>pip install fayde</code>): plate
+   solves of the frames with round stars give the true pixel scale and
+   parity, the roll keyword's convention, the pixel the header RA/Dec
+   refers to, the header's pointing errors, and the photometric zeropoint
+   (aperture photometry of the matched catalogue stars, corrected to total
+   flux with the fitted PSF).</li>
+<li>Earth glare, with <code>--skytwin</code>: a tiny twin of each frame gives
+   Skytwin's own geometry (angle from the limb, sunlit or dark limb,
+   Earth's direction in the image); the background of sunlit-limb frames
+   against angle gives the table, dark-limb frames the dark factor, and the
+   frame ramps the gradient and its direction. Frames inside the glare zone
+   leave the pedestal sampling so their glare is not counted twice.
+   Then <code>noise.smooth_field</code>: smooth background structure with sources
+   masked, from block-to-block covariances that hold no pixel noise. With
+   <code>--skytwin</code> it is corrected against simulated frames, twins of the real
+   sky when a catalogue and the frames' pointing are known (frames with
+   their own WCS give it), since a real field's faint stars below the mask
+   add to the covariance too.</li>
+<li>Header style, so simulated frames carry the same keywords: constant
+   cards copied, computable ones templated.</li>
+<li>Profile blocks from the statistics (<code>profile</code>).</li>
+<li>With <code>--skytwin</code>: two refinement passes, then simulated twins and a
+   realism report. Add <code>--catalog</code> or <code>--ucac4</code> for twins of the real sky.</li>
+</ol>
+<h2 id="blocks-fitted-indirectly">Blocks fitted indirectly<a class="headerlink" href="#blocks-fitted-indirectly" title="Permanent link">&para;</a></h2>
+<p><code>skytwin-calibrate learn</code> fits most blocks, the read-out faults among them, directly from frame
+statistics. The blocks below are fitted indirectly.</p>
+<h3 id="background-light-pedestal-and-fixed-field">Background light, pedestal and fixed field<a class="headerlink" href="#background-light-pedestal-and-fixed-field" title="Permanent link">&para;</a></h3>
+<p><code>skytwin-calibrate learn</code> splits each frame's level into <code>sky_e_per_s</code>, the
+pedestal and <code>noise.fixed_field</code> when the flat has a field stop: block
+medians are fitted as pedestal + fixed field + light × flat, the fixed
+field kept orthogonal to a constant and to the flat's shape.</p>
+<h3 id="serial-lag">Serial lag<a class="headerlink" href="#serial-lag" title="Permanent link">&para;</a></h3>
+<p><code>skytwin-calibrate learn</code> takes <code>a</code> as the ratio of the lag-2 to the lag-1
+correlation of the background along rows (white noise added after the
+filter lowers both alike), the side from where resolved stars carry more
+flux, and undoes the lag before choosing frames and fitting the PSF, so the
+PSF is the optical one.</p>
+<h3 id="smooth-background-field">Smooth background field<a class="headerlink" href="#smooth-background-field" title="Permanent link">&para;</a></h3>
+<p><code>skytwin-calibrate learn</code> measures <code>noise.smooth_field</code> with sources masked: block medians
+about a quadratic surface, whose covariances between neighbouring blocks
+(lags 1 and 2) hold no pixel noise. Their ratio gives the scale and their
+size the RMS, through a table made by measuring simulated fields the same
+way.</p>
+<h3 id="colour-term">Colour term<a class="headerlink" href="#colour-term" title="Permanent link">&para;</a></h3>
+<p><code>skytwin-calibrate learn</code> fits <code>camera.color_term</code> from forced photometry
+when its catalogue carries a colour (a Gaia CSV): per-star zeropoint
+against colour, clipped, kept when 5σ from zero.</p>
+<h2 id="choosing-a-catalogue">Choosing a catalogue<a class="headerlink" href="#choosing-a-catalogue" title="Permanent link">&para;</a></h2>
+<p>The catalogue sets the photometry, so use one whose magnitudes hold for the stars the camera
+sees: UCAC4's own magnitudes saturate brighter than about 8, which a
+wide-field camera's stars often are. The zeropoint comes from forced
+photometry at every catalogue position (no detection bias), and <code>learn</code>
+warns when it drifts with magnitude. With a colour column (<code>bp_rp</code>) it
+also fits <code>camera.color_term</code>. Gaia DR3 lacks many stars brighter than
+G ~ 3, often the brightest in a wide field;
+<a href="https://github.com/shaneryall/SkyTwin/blob/main/tools/calibrate/examples/add_bright_stars.py"><code>add_bright_stars.py</code></a> adds them to
+a Gaia CSV from the Yale Bright Star Catalogue (VizieR V/50).</p>
+<h2 id="calibration-frames">Calibration frames<a class="headerlink" href="#calibration-frames" title="Permanent link">&para;</a></h2>
+<p>With <code>--calibration</code>, <code>learn</code> also reads the camera's bias, dark and
+flat frames. They are sorted by their header frame type (<code>IMAGETYP</code> and
+kin), else by the folder or file name, and only those of the science
+frames' size and binning are used. What they measure replaces what the
+science frames would give:</p>
+<ul>
+<li>gain by photon transfer from pairs of flats at the same exposure, with
+  the read noise from pairs of bias frames;</li>
+<li>the dark current from master darks of the longest and shortest exposure,
+  so the bias and the charge a row collects while it waits to be read
+  cancel (the part that does not grow with exposure is reported, not kept);</li>
+<li>the radiation rate from hits in the darks, each dark less the median of
+  its night and exposure, leaving out hits at pixels that fire in two or
+  more darks (flickering pixels); with two or more exposures, the hits at
+  zero exposure give the read-out time;</li>
+<li>dust shadows from the master flat, found with ring-shaped matched
+  filters and measured from their radial profiles, in chip pixels as
+  Skytwin draws them.</li>
+</ul>
+<p>Hot pixels stay the ones the science frames show; the darks' own are the
+fallback when the science frames find none, and <code>profile.learn.md</code>
+compares the two.</p>
+<h2 id="frames-whose-stars-trail">Frames whose stars trail<a class="headerlink" href="#frames-whose-stars-trail" title="Permanent link">&para;</a></h2>
+<p>When the stars in most sampled frames trail (a telescope tracking a
+satellite, say), <code>learn</code> measures each frame's trail length and angle from
+the frame's autocorrelation, which for segments of length L is a ridge
+whose profile along the trail is a triangle of half-width L. Then:</p>
+<ul>
+<li>the PSF comes from the profile across isolated trails, which the motion
+  does not blur; for a sum of round Gaussians the profile across is the
+  same sum of one-dimensional Gaussians, so the fit gives <code>camera.fwhm_px</code>
+  and <code>psf.wings</code> directly;</li>
+<li>frames with their own WCS are matched by trail centres, found with a
+  filter along the trail, and the zeropoint comes from boxes along the
+  trails, corrected for the PSF halo outside the box and in its
+  background ring;</li>
+<li>radiation is counted outside the trails in frames of the longest
+  exposure, leaving out events at a pixel that fires in two or more
+  frames (hot and flickering pixels, a tracked target); the read-out time
+  comes from how the hits split between the chip's halves, and the rate
+  is an upper bound, since every other event counts too;</li>
+<li>each frame's twin trails at that frame's rate, so the smooth-field
+  correction and the realism report compare like with like.</li>
+</ul>
+<h2 id="ground-frames">Ground frames<a class="headerlink" href="#ground-frames" title="Permanent link">&para;</a></h2>
+<p>Frames with an airmass, or the telescope's altitude, in their headers are
+taken from the ground. Their zeropoint is fitted against airmass, frame by
+frame, so the profile's zeropoint is the one above the atmosphere and its
+description gives the extinction a scene's ground site should use (a site
+applies the atmosphere itself). When the frames span too little airmass to
+fit it, <code>--extinction</code> (mag/airmass, 0.2 if not given) moves the zeropoint
+up from the frames' median airmass, and the report says it was assumed.
+Forced photometry uses an aperture of 2.5 times the PSF's FWHM, with the
+background 1.36 to 2 apertures out, so a wide PSF's wings do not land in
+the background. With plate solves, a <code>--catalog</code> (a Gaia extract, say) is
+measured through each solution, so the colour term and the extinction come
+from it rather than from UCAC4's magnitudes.</p>
+<h2 id="the-cramérrao-bound-in-scores">The Cramér–Rao bound in scores<a class="headerlink" href="#the-cramérrao-bound-in-scores" title="Permanent link">&para;</a></h2>
+<p>Truth files of static frames (no tracking, no pointing motion) carry each
+star's Cramér–Rao bound (<code>crlb_px</code>, <code>crlb_flux_e</code>), from the actual PSF and
+per-pixel variance. A detector whose centroid errors have an RMS of 1 in
+units of the bound reaches the best precision any method can.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.sections", "navigation.top", "search.highlight"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  <script data-mkdocs-jupyter-mathjax="{&quot;url&quot;: &quot;https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-mml-chtml.js&quot;, &quot;version&quot;: 4}">
+/* Shared by full pages and Material's instant navigation. */
+(() => {
+  const config = JSON.parse(document.currentScript.dataset.mkdocsJupyterMathjax);
+  if (window.mkdocsJupyterMathJax) return;
+
+  let loading;
+  let queue = Promise.resolve();
+  let previous = [];
+
+  const ready = async () => {
+    if (!loading) {
+      loading = (async () => {
+        let math = window.MathJax;
+        if (!math?.typesetPromise) {
+          const url = new URL(config.url, document.baseURI).href;
+          const existing = Array.from(document.scripts).find(script =>
+            script.src && (script.src === url || script.id === 'MathJax-script' ||
+              (/mathjax/i.test(script.src) &&
+               /\/(?:MathJax|latest|(?:tex|mml)(?:-mml)?-(?:chtml|svg))\.js(?:[?#]|$)/i.test(script.src))));
+          if (existing) {
+            if (!math?.startup?.promise) {
+              await new Promise((resolve, reject) => {
+                existing.addEventListener('load', resolve, { once: true });
+                existing.addEventListener('error', reject, { once: true });
+              });
+            }
+          } else {
+            // Keep site macros, delimiters and startup hooks when supplied.
+            const options = math || {};
+            window.MathJax = {
+              ...options,
+              loader: {
+                ...options.loader,
+                load: Array.from(new Set(['ui/safe', ...(options.loader?.load || [])]))
+              },
+              startup: { typeset: false, ...options.startup },
+              tex: {
+                tags: 'ams',
+                useLabelIds: true,
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true,
+                ...options.tex
+              }
+            };
+            await new Promise((resolve, reject) => {
+              const script = document.createElement('script');
+              script.src = config.url;
+              script.id = 'MathJax-script';
+              script.async = true;
+              script.onload = resolve;
+              script.onerror = reject;
+              document.head.appendChild(script);
+            });
+          }
+        }
+        math = window.MathJax;
+        await math.startup.promise;
+        return math;
+      })();
+    }
+    const math = await loading;
+    // A site owner can extend the v3 queue again on each navigation.
+    await math.startup.promise;
+    return math;
+  };
+
+  const unrendered = node => {
+    if (node.matches('mjx-container')) return [];
+    if (!node.querySelector('mjx-container')) return [node];
+    // In v3, scanning generated assistive MathML again produces nested output.
+    return Array.from(node.children).flatMap(unrendered);
+  };
+
+  const refresh = () => {
+    // A separate chain also serializes v3, without changing v4's startup promise.
+    queue = queue.then(async () => {
+      const notebooks = Array.from(document.querySelectorAll('.jupyter-wrapper'));
+      if (!notebooks.length && !previous.length) return;
+      if (notebooks.length === previous.length &&
+          notebooks.every((node, index) => node === previous[index])) return;
+      const math = await ready();
+      if (previous.length) {
+        math.typesetClear(previous);
+        math.texReset();
+      }
+      previous = notebooks.filter(node => node.isConnected);
+      const pending = previous.flatMap(unrendered);
+      if (pending.length) await math.typesetPromise(pending);
+    }).catch(error => console.error('mkdocs-jupyter: MathJax rendering failed', error));
+    return queue;
+  };
+
+  window.mkdocsJupyterMathJax = { refresh };
+  const start = () => {
+    if (typeof document$ !== 'undefined') document$.subscribe(refresh);
+    else refresh();
+  };
+  // Theme bundles and user-provided MathJax scripts can follow notebook content.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start, { once: true });
+  } else start();
+})();
+
+</script>
+</body>
+</html>
