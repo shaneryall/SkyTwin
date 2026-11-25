@@ -118,7 +118,7 @@ Ask questions in [Discussions](https://github.com/shaneryall/SkyTwin/discussions
 
 ## Citation
 
-If you use Skytwin in published work, cite it as [CITATION.cff](https://github.com/shaneryall/SkyTwin/blob/main/CITATION.cff) gives.
+If you use Skytwin in published work, cite it as [CITATION.cff](https://github.com/shaneryall/SkyTwin/blob/main/CITATION.cff) gives. The DOI [10.5281/zenodo.24544458](https://doi.org/10.5281/zenodo.24544458) covers every version; each release also has a DOI of its own on Zenodo.
 
 ## Licence
 
