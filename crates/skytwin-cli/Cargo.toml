@@ -22,7 +22,7 @@ skytwin-core.workspace = true
 serde.workspace = true
 serde_json.workspace = true
 libm.workspace = true
-sha2 = "0.10"
+sha2 = "0.11"
 
 [lints]
 workspace = true
