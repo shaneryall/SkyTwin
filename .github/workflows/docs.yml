@@ -1,0 +1,91 @@
+name: Docs
+
+# Builds the site from docs/ on every change with read-only permissions, and publishes it to
+# GitHub Pages (branch gh-pages) from a separate job that runs only on main and release tags:
+# main as the "dev" version, each release as its own version, the latest as the default.
+# The command-line reference is generated from --help, so both jobs build the commands first.
+
+on:
+  push:
+    branches: [main]
+    tags: ["v[0-9]+.[0-9]+.[0-9]+"]
+  pull_request:
+    paths:
+      - "docs/**"
+      - "mkdocs.yml"
+      - "scripts/docs/**"
+      - "README.md"
+      - "CHANGELOG.md"
+      - "crates/skytwin-py/python/**"
+      - "crates/skytwin-cli/**"
+      - "tools/calibrate/skytwin_calibrate/cli.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  CARGO_TERM_COLOR: never
+  RUST_TOOLCHAIN: "1.95"
+  DOCS_REF: ${{ github.ref_type == 'tag' && github.ref_name || 'main' }}
+
+# Every action is pinned to a full commit SHA with its version as a comment; keep the comments.
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.13"
+      - name: Install the commands and the site tools
+        run: |
+          rustup toolchain install "$RUST_TOOLCHAIN" --profile minimal --no-self-update
+          rustup default "$RUST_TOOLCHAIN"
+          cargo install --locked --path crates/skytwin-cli
+          python -m pip install ./crates/skytwin-py ./tools/calibrate
+          python -m pip install --require-hashes -r scripts/docs/requirements.txt
+      - name: Build the site (warnings fail the build)
+        run: mkdocs build --strict
+
+  publish:
+    needs: build
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    # One publish at a time across refs: a main push and a tag both push gh-pages.
+    concurrency:
+      group: docs-publish
+      cancel-in-progress: false
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.13"
+      - name: Install the commands and the site tools
+        run: |
+          rustup toolchain install "$RUST_TOOLCHAIN" --profile minimal --no-self-update
+          rustup default "$RUST_TOOLCHAIN"
+          cargo install --locked --path crates/skytwin-cli
+          python -m pip install ./crates/skytwin-py ./tools/calibrate
+          python -m pip install --require-hashes -r scripts/docs/requirements.txt
+      - name: Publish
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ "$GITHUB_REF_TYPE" = tag ]; then
+            version="${GITHUB_REF_NAME#v}"
+            mike deploy --push --update-aliases "${version%.*}" latest
+            mike set-default --push latest
+          else
+            mike deploy --push dev
+          fi

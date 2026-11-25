@@ -1,0 +1,8 @@
+# The documentation site's build tools. requirements.txt comes from this file by
+#   uv pip compile scripts/docs/requirements.in --universal --python-version 3.11 --generate-hashes -o scripts/docs/requirements.txt
+mkdocs-material
+mkdocs-jupyter
+mkdocstrings[python]
+mkdocs-llmstxt
+mike
+markdown-callouts

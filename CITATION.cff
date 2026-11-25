@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use Skytwin in published work, please cite it as below."
+title: "Skytwin: synthetic space domain awareness images with exact truth"
+type: software
+abstract: "Synthetic star-field images with satellite streaks, instrument defects and an exact answer key for every frame."
+authors:
+  - family-names: Ryall
+    given-names: Shane
+version: 0.1.0
+date-released: 2026-11-25
+repository-code: "https://github.com/shaneryall/SkyTwin"
+license: GPL-3.0-or-later
+keywords:
+  - space domain awareness
+  - image simulation
+  - star tracker
+  - resident space objects
+  - astrometry

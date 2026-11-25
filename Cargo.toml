@@ -1,0 +1,46 @@
+[workspace]
+resolver = "2"
+members = ["crates/*"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+license = "GPL-3.0-or-later"
+authors = ["Shane Ryall"]
+repository = "https://github.com/shaneryall/SkyTwin"
+homepage = "https://github.com/shaneryall/SkyTwin"
+keywords = ["astronomy", "simulation", "satellite", "space-surveillance", "fits"]
+categories = ["science", "simulation"]
+
+[workspace.dependencies]
+skytwin-core = { path = "crates/skytwin-core", version = "=0.1.0" }
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["float_roundtrip"] }
+# Pure-Rust maths: the same bits on every OS and CPU.
+# Star catalogues and sky types shared with the Fayde plate solver.
+fayde-catalog = "0.3.3"
+fayde-core = "0.3.3"
+# SGP4 (Vallado 2006) with libm maths, so TLE scenes stay bit-reproducible.
+sgp4 = { version = "2.4", default-features = false, features = ["alloc", "libm"] }
+libm = { version = "0.2", default-features = false }
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+missing_docs = "warn"
+
+[workspace.lints.clippy]
+pedantic = { level = "warn", priority = -1 }
+# Pixel and float arithmetic converts between integer and float types by
+# design; the values involved stay far inside both ranges.
+cast_precision_loss = "allow"
+cast_possible_truncation = "allow"
+cast_sign_loss = "allow"
+cast_possible_wrap = "allow"
+# Maths written as in its sources: x, y, dx, dy, a, b.
+many_single_char_names = "allow"
+similar_names = "allow"
+# Tests assert bit-for-bit reproducibility.
+float_cmp = "allow"
+must_use_candidate = "allow"
+too_many_lines = "allow"

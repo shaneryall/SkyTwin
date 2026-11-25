@@ -1,0 +1,9 @@
+{
+  "seed": 3,
+  "instrument": "profiles/example-microsat.json",
+  "overrides": { "camera": { "exposure_s": 3.0 } },
+  "scene": {
+    "random_stars": { "count": 300, "max_flux_e": 500000.0, "min_flux_e": 300.0 },
+    "streaks": [{ "start": [120.0, 800.0], "end": [700.0, 540.0], "mag": 8.5 }]
+  }
+}

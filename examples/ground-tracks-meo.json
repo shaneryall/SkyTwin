@@ -1,0 +1,56 @@
+{
+  "seed": 5,
+  "camera": {
+    "width": 1024,
+    "height": 1024,
+    "pixel_scale_arcsec": 1.5,
+    "fwhm_px": 2.5,
+    "exposure_s": 3.0,
+    "zeropoint_mag": 21.0,
+    "sky": {
+      "mag_per_arcsec2": 20.5
+    },
+    "dark_e_per_s": 0.1,
+    "read_noise_e": 9.0,
+    "gain_e_per_adu": 1.5,
+    "bias_adu": 900.0,
+    "full_well_e": 100000.0
+  },
+  "scene": {
+    "time": {
+      "start_utc": "2026-11-17T03:00:00.000"
+    },
+    "observer": {
+      "site": {
+        "latitude_deg": 32.9,
+        "longitude_deg": -105.5,
+        "height_m": 2200.0,
+        "dut1_s": 0.0,
+        "extinction_mag_per_airmass": 0.15
+      }
+    },
+    "pointing": {
+      "track": "MEO-1",
+      "roll_deg": 0.0
+    },
+    "random_stars": {
+      "count": 400,
+      "max_flux_e": 200000.0,
+      "min_flux_e": 300.0
+    },
+    "targets": [
+      {
+        "name": "MEO-1",
+        "orbit": {
+          "tle": [
+            "1 99201U          26320.50000000  .00000000  00000-0  00000+0 0    01",
+            "2 99201  55.0000 180.0000 0050000  90.0000   0.0000  2.00560000    09"
+          ]
+        },
+        "brightness": {
+          "mag": 11.0
+        }
+      }
+    ]
+  }
+}

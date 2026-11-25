@@ -1,0 +1,15 @@
+# Keeps the SHA-pinned actions, the Rust dependencies and the docs site tools up to date.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+  - package-ecosystem: cargo
+    directory: /
+    schedule:
+      interval: weekly
+  - package-ecosystem: pip
+    directory: /scripts/docs
+    schedule:
+      interval: monthly

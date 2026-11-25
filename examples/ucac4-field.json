@@ -1,0 +1,24 @@
+{
+  "seed": 7,
+  "camera": {
+    "width": 1024,
+    "height": 1024,
+    "pixel_scale_arcsec": 3.0,
+    "fwhm_px": 2.0,
+    "exposure_s": 10.0,
+    "zeropoint_mag": 20.0,
+    "sky": { "mag_per_arcsec2": 22.5 },
+    "dark_e_per_s": 0.1,
+    "read_noise_e": 8.0,
+    "gain_e_per_adu": 1.5,
+    "bias_adu": 1000.0,
+    "full_well_e": 60000.0
+  },
+  "scene": {
+    "pointing": { "ra_deg": 172.5, "dec_deg": 2.0, "roll_deg": 30.0 },
+    "catalog": { "ucac4": "data/ucac4", "mag_limit": 15.5, "epoch_jyear": 2026.9 },
+    "streaks": [
+      { "start": [150.0, 820.0], "end": [760.0, 560.0], "mag": 11.5 }
+    ]
+  }
+}

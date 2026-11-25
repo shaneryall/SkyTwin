@@ -1,0 +1,58 @@
+[build-system]
+requires = ["maturin>=1.7,<2"]
+build-backend = "maturin"
+
+[project]
+name = "skytwin"
+description = "Synthetic star-field images with satellite streaks, instrument defects and an exact answer key for every frame"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE", "THIRD-PARTY-LICENSES.txt"]
+authors = [{ name = "Shane Ryall" }]
+keywords = ["astronomy", "simulation", "satellite", "space domain awareness", "deep learning"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Rust",
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Astronomy",
+]
+dynamic = ["version"]
+dependencies = ["numpy>=1.22"]
+
+[project.scripts]
+skytwin-export = "skytwin.export:main"
+
+[project.optional-dependencies]
+test = ["pytest"]
+torch = ["torch"]
+
+[project.urls]
+Homepage = "https://github.com/shaneryall/SkyTwin"
+Repository = "https://github.com/shaneryall/SkyTwin"
+Documentation = "https://shaneryall.github.io/SkyTwin/"
+Changelog = "https://github.com/shaneryall/SkyTwin/blob/main/CHANGELOG.md"
+
+[tool.maturin]
+python-source = "python"
+module-name = "skytwin._native"
+features = ["extension-module"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 120
+src = ["python"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF", "NPY"]
+allowed-confusables = ["×", "−", "σ", "ρ", "–"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers --strict-config"
+xfail_strict = true

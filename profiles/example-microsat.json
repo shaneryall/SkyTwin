@@ -1,0 +1,325 @@
+{
+  "name": "example-microsat",
+  "description": "Illustrative small-satellite camera with read-out and processing defects. Round numbers, not a real instrument.",
+  "detector_seed": 1,
+  "camera": {
+    "width": 1024,
+    "height": 1024,
+    "pixel_scale_arcsec": 3.0,
+    "fwhm_px": 2.0,
+    "exposure_s": 5.0,
+    "zeropoint_mag": 20.0,
+    "sky": {
+      "mag_per_arcsec2": 22.5
+    },
+    "dark_e_per_s": 0.5,
+    "read_noise_e": 8.0,
+    "gain_e_per_adu": 1.2,
+    "bias_adu": 1000.0,
+    "full_well_e": 70000.0,
+    "pixel_pitch_um": 13.0,
+    "parity": "negative",
+    "optical_axis_px": [
+      500.0,
+      520.0
+    ]
+  },
+  "detector": {
+    "chip_px": [
+      2048,
+      2048
+    ],
+    "window_origin_px": [
+      512,
+      512
+    ],
+    "binning": [
+      1,
+      1
+    ]
+  },
+  "psf": {
+    "wings": [
+      {
+        "fraction": 0.2,
+        "fwhm_px": 5.0
+      },
+      {
+        "fraction": 0.04,
+        "fwhm_px": 12.0
+      }
+    ]
+  },
+  "flat": {
+    "vignetting": [
+      -0.12,
+      -0.03
+    ],
+    "prnu_rms": 0.008,
+    "dust": {
+      "density_per_mpix": 2.0,
+      "radius_px": {
+        "uniform": [
+          15,
+          40
+        ]
+      },
+      "depth": {
+        "uniform": [
+          0.02,
+          0.08
+        ]
+      },
+      "hole_fraction": 0.35
+    }
+  },
+  "pointing": {
+    "wobble_rms_arcsec": {
+      "log_uniform": [
+        0.2,
+        1.0
+      ]
+    },
+    "wobble_time_s": 1.0,
+    "jump_rate_per_s": 0.01,
+    "jump_arcsec": {
+      "log_uniform": [
+        2,
+        10
+      ]
+    },
+    "blur_arcsec": 0.3,
+    "header": {
+      "reference_px": [
+        500.0,
+        520.0
+      ],
+      "error_arcsec": 2.0,
+      "roll_error_deg": 0.05
+    }
+  },
+  "temperature_c": {
+    "uniform": [
+      -35,
+      -20
+    ]
+  },
+  "dark": {
+    "e_per_s_at_ref": 0.3,
+    "ref_temp_c": -30.0
+  },
+  "hot_pixels": {
+    "density_per_mpix": 150,
+    "e_per_s_at_ref": {
+      "log_uniform": [
+        0.5,
+        500
+      ]
+    }
+  },
+  "radiation": {
+    "rate_per_cm2_s": 2.0,
+    "rate_map": {
+      "lat_edges_deg": [
+        -90,
+        -60,
+        -50,
+        -10,
+        60,
+        90
+      ],
+      "lon_edges_deg": [
+        -180,
+        -90,
+        20,
+        180
+      ],
+      "rate_per_cm2_s": [
+        [
+          4,
+          4,
+          4
+        ],
+        [
+          2,
+          6,
+          2
+        ],
+        [
+          2,
+          150,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          4,
+          4,
+          4
+        ]
+      ]
+    },
+    "depth_um": 15.0,
+    "e_per_um": 80.0,
+    "landau_scale": 0.15,
+    "diffusion_px": 0.4
+  },
+  "cti": {
+    "serial": {
+      "loss_per_transfer": 5e-05,
+      "trail_px": 2.0
+    },
+    "amp_right": true
+  },
+  "smear": {
+    "above_s_per_row": 5e-05,
+    "below_s_per_row": 2e-05
+  },
+  "saturation": {
+    "bleed": true
+  },
+  "stray_light": [
+    {
+      "body": "earth",
+      "angle_deg": [
+        10,
+        12,
+        14,
+        16,
+        20
+      ],
+      "e_per_s": [
+        5000,
+        2000,
+        300,
+        20,
+        0
+      ],
+      "gradient": 0.2,
+      "toward_deg": 0,
+      "dark_limb_factor": 0.02
+    },
+    {
+      "body": "moon",
+      "angle_deg": [
+        5,
+        15,
+        30,
+        45
+      ],
+      "e_per_s": [
+        400,
+        80,
+        10,
+        0
+      ],
+      "gradient": 0.1,
+      "toward_deg": 0
+    },
+    {
+      "body": "sun",
+      "angle_deg": [
+        40,
+        50,
+        60,
+        75
+      ],
+      "e_per_s": [
+        3000,
+        300,
+        20,
+        0
+      ],
+      "gradient": 0.3,
+      "toward_deg": 0
+    }
+  ],
+  "processing": {
+    "bias_subtracted": true,
+    "pedestal_adu": {
+      "log_uniform": [
+        10,
+        80
+      ]
+    },
+    "clip_min_adu": 0,
+    "clip_max_adu": 64000
+  },
+  "noise": {
+    "extra_white_adu": {
+      "log_uniform": [
+        12,
+        40
+      ]
+    },
+    "patterns": [
+      {
+        "period_px": {
+          "normal": [
+            5.0,
+            0.05
+          ]
+        },
+        "angle_deg": {
+          "normal": [
+            40.0,
+            0.2
+          ]
+        },
+        "amplitude_adu": {
+          "uniform": [
+            3,
+            15
+          ]
+        }
+      }
+    ],
+    "row_noise_adu": {
+      "uniform": [
+        0,
+        3
+      ]
+    },
+    "column_noise_adu": 2.0,
+    "ramp_y_adu": 3.0,
+    "ramp_y_adu_per_s": 0.3
+  },
+  "header": {
+    "wcs": true,
+    "skytwin_keywords": true,
+    "roll": {
+      "keyword": "ROLLANG",
+      "offset_deg": 0.0,
+      "sign": 1,
+      "comment": "spacecraft roll, deg"
+    },
+    "cards": [
+      {
+        "key": "INSTRUME",
+        "value": "EXAMPLE-CAM"
+      },
+      {
+        "key": "RA",
+        "value": "{ra_hms}",
+        "comment": "reported pointing"
+      },
+      {
+        "key": "DEC",
+        "value": "{dec_dms}"
+      },
+      {
+        "key": "CCD-TEMP",
+        "value": "{ccd_temp_c}",
+        "comment": "[C]"
+      },
+      {
+        "key": "GAIN",
+        "value": "1.20",
+        "comment": "quoted, as some instruments write it"
+      }
+    ]
+  }
+}

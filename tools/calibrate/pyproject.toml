@@ -1,0 +1,43 @@
+[project]
+name = "skytwin-calibrate"
+version = "0.1.0"
+description = "Measure a real image archive, build a Skytwin instrument profile from it, and report how closely simulated frames match"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "GPL-3.0-or-later"
+authors = [{ name = "Shane Ryall" }]
+keywords = ["astronomy", "calibration", "simulation", "instrument profile", "space domain awareness"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Astronomy",
+]
+dependencies = ["numpy>=1.24", "scipy>=1.10", "astropy>=6.0"]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[project.scripts]
+skytwin-calibrate = "skytwin_calibrate.cli:main"
+
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["skytwin_calibrate"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF", "NPY"]
+# Reports and docstrings write maths with ×, −, σ and en dashes on purpose.
+allowed-confusables = ["×", "−", "σ", "ρ", "–"]
+# zip() pairs sequences of equal length by construction; strict= on each call would add noise, not checks.
+ignore = ["B905"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers --strict-config"
+xfail_strict = true

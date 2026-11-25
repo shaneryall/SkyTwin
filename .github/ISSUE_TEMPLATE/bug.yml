@@ -1,0 +1,52 @@
+name: Bug report
+description: A crash, an error, wrong pixels or truth, or a label that disagrees with the image.
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you ran, what you expected, and what Skytwin did instead.
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command or code
+      description: The exact command line or Python code.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: scene
+    attributes:
+      label: Scene file
+      description: The scene JSON, and the instrument profile if it names one. Remove anything you can't share.
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Output or error
+      description: The error message, or the part of the truth or provenance file that is wrong.
+      render: text
+  - type: input
+    id: version
+    attributes:
+      label: Skytwin version
+      description: The output of `skytwin --version`, or `skytwin.__version__` in Python.
+    validations:
+      required: true
+  - type: input
+    id: platform
+    attributes:
+      label: Platform
+      description: For example macOS 15 on Apple silicon, Ubuntu 24.04 on x86_64, or Windows 11.
+    validations:
+      required: true
+  - type: textarea
+    id: data
+    attributes:
+      label: Input data
+      description: The star catalogue, TLE file or FITS frames involved, if any, and where they come from.

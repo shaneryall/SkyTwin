@@ -1,0 +1,14 @@
+{
+  "exposure_s": "EXPTIME",
+  "temperature_c": "CCDTEMP",
+  "time_utc": "DATE-OBS",
+  "subpoint_lat_deg": "SUB_LAT",
+  "subpoint_lon_deg": "SUB_LON",
+  "position_km": ["OBS_X", "OBS_Y", "OBS_Z"],
+  "velocity_km_s": ["OBS_VX", "OBS_VY", "OBS_VZ"],
+  "state_frame": "gcrs",
+  "ra": "ATT_RA",
+  "dec": "ATT_DEC",
+  "roll": {"keyword": "ATT_ROLL", "offset_deg": 0.0, "sign": 1},
+  "saturation_adu": 64000
+}

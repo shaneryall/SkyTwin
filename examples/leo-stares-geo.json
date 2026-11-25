@@ -1,0 +1,48 @@
+{
+  "seed": 22,
+  "camera": {
+    "width": 1024,
+    "height": 1024,
+    "pixel_scale_arcsec": 3.0,
+    "fwhm_px": 2.0,
+    "exposure_s": 10.0,
+    "zeropoint_mag": 20.0,
+    "sky": {
+      "mag_per_arcsec2": 22.5
+    },
+    "dark_e_per_s": 0.1,
+    "read_noise_e": 8.0,
+    "gain_e_per_adu": 1.5,
+    "bias_adu": 1000.0,
+    "full_well_e": 60000.0
+  },
+  "scene": {
+    "time": {
+      "start_utc": "2026-11-17T03:00:00.000"
+    },
+    "observer": {
+      "tle": [
+        "1 99001U          26321.00000000  .00000000  00000-0  10000-4 0    01",
+        "2 99001  98.5500 325.0000 0012000  95.0000  10.0000 14.30000000    04"
+      ]
+    },
+    "pointing": {
+      "ra_deg": 313.81,
+      "dec_deg": -5.474,
+      "roll_deg": 30.0
+    },
+    "catalog": {
+      "ucac4": "data/ucac4",
+      "mag_limit": 15.5
+    },
+    "target_file": {
+      "path": "examples/targets.tle",
+      "brightness": {
+        "lambertian_sphere": {
+          "diameter_m": 3.0,
+          "albedo": 0.25
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report a security problem
+    url: https://github.com/shaneryall/SkyTwin/security/advisories/new
+    about: Report vulnerabilities privately, as described in SECURITY.md.
+  - name: Read the documentation
+    url: https://github.com/shaneryall/SkyTwin#documentation
+    about: Install steps, scene format, instrument profiles and training labels.

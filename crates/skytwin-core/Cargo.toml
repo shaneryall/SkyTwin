@@ -1,0 +1,26 @@
+[package]
+name = "skytwin-core"
+description = "Synthetic star-field images with satellite streaks, instrument defects and an exact answer key for every frame"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+keywords.workspace = true
+categories.workspace = true
+readme = "README.md"
+documentation = "https://docs.rs/skytwin-core"
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+libm.workspace = true
+fayde-catalog.workspace = true
+fayde-core.workspace = true
+sgp4.workspace = true
+
+
+[lints]
+workspace = true

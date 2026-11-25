@@ -1,0 +1,21 @@
+name: Feature request
+description: Something Skytwin should do that it doesn't.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: What you need
+      description: The task you want to do and what stops you today. Describe the problem before the solution.
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Example
+      description: A scene file, a command, or a workflow that shows the need.
+  - type: textarea
+    id: others
+    attributes:
+      label: How you do it now
+      description: Another tool or a workaround, if you use one.

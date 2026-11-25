@@ -1,0 +1,27 @@
+{
+  "seed": 1,
+  "camera": {
+    "width": 1024,
+    "height": 1024,
+    "pixel_scale_arcsec": 3.0,
+    "fwhm_px": 2.5,
+    "exposure_s": 10.0,
+    "zeropoint_mag": 20.0,
+    "sky": { "e_per_s": 20.0 },
+    "dark_e_per_s": 0.1,
+    "read_noise_e": 8.0,
+    "gain_e_per_adu": 1.5,
+    "bias_adu": 1000.0,
+    "full_well_e": 60000.0
+  },
+  "scene": {
+    "stars": [
+      { "x": 511.5, "y": 511.5, "flux_e": 200000.0 }
+    ],
+    "random_stars": { "count": 400, "max_flux_e": 500000.0, "min_flux_e": 300.0 },
+    "streaks": [
+      { "start": [100.0, 850.0], "end": [700.0, 600.0], "flux_e": 150000.0 },
+      { "start": [900.0, 80.0], "end": [620.0, 400.0], "mag": 13.0 }
+    ]
+  }
+}

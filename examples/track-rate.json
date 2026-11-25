@@ -1,0 +1,28 @@
+{
+  "seed": 5,
+  "instrument": "profiles/example-microsat.json",
+  "overrides": { "camera": { "exposure_s": 3.0 } },
+  "scene": {
+    "time": { "start_utc": "2026-11-17T03:00:00.000" },
+    "observer": {
+      "tle": [
+        "1 99001U          26321.00000000  .00000000  00000-0  10000-4 0    01",
+        "2 99001  98.5500 325.0000 0012000  95.0000  10.0000 14.30000000    04"
+      ]
+    },
+    "pointing": { "track": "GEO-1", "roll_deg": 30.0 },
+    "random_stars": { "count": 300, "max_flux_e": 500000.0, "min_flux_e": 300.0 },
+    "targets": [
+      {
+        "name": "GEO-1",
+        "orbit": {
+          "tle": [
+            "1 99101U          26321.00000000  .00000000  00000-0  00000+0 0    06",
+            "2 99101   0.0500  80.0000 0002000  90.0000 100.0000  1.00273791    07"
+          ]
+        },
+        "brightness": { "lambertian_sphere": { "diameter_m": 8.0, "albedo": 0.25 } }
+      }
+    ]
+  }
+}

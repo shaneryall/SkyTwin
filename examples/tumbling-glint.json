@@ -1,0 +1,119 @@
+{
+  "seed": 31,
+  "camera": {
+    "width": 1024,
+    "height": 1024,
+    "pixel_scale_arcsec": 3.0,
+    "fwhm_px": 2.0,
+    "exposure_s": 10.0,
+    "zeropoint_mag": 20.0,
+    "sky": {
+      "mag_per_arcsec2": 22.5
+    },
+    "dark_e_per_s": 0.1,
+    "read_noise_e": 8.0,
+    "gain_e_per_adu": 1.5,
+    "bias_adu": 1000.0,
+    "full_well_e": 60000.0
+  },
+  "scene": {
+    "time": {
+      "start_utc": "2026-11-17T03:00:00.000"
+    },
+    "observer": {
+      "tle": [
+        "1 99001U          26321.00000000  .00000000  00000-0  10000-4 0    01",
+        "2 99001  98.5500 325.0000 0012000  95.0000  10.0000 14.30000000    04"
+      ]
+    },
+    "pointing": {
+      "ra_deg": 313.81,
+      "dec_deg": -5.474,
+      "roll_deg": 30.0
+    },
+    "targets": [
+      {
+        "name": "GEO-1",
+        "orbit": {
+          "tle": [
+            "1 99101U          26321.00000000  .00000000  00000-0  00000+0 0    06",
+            "2 99101   0.0500  80.0000 0002000  90.0000 100.0000  1.00273791    07"
+          ]
+        },
+        "brightness": {
+          "facets": {
+            "facets": [
+              {
+                "normal": [
+                  0,
+                  0,
+                  1
+                ],
+                "area_m2": 20.0,
+                "diffuse_albedo": 0.05,
+                "specular_albedo": 0.6,
+                "specular_exponent": 800
+              },
+              {
+                "normal": [
+                  0,
+                  0,
+                  -1
+                ],
+                "area_m2": 20.0,
+                "diffuse_albedo": 0.3
+              },
+              {
+                "normal": [
+                  1,
+                  0,
+                  0
+                ],
+                "area_m2": 4.0,
+                "diffuse_albedo": 0.25
+              },
+              {
+                "normal": [
+                  -1,
+                  0,
+                  0
+                ],
+                "area_m2": 4.0,
+                "diffuse_albedo": 0.25
+              },
+              {
+                "normal": [
+                  0,
+                  1,
+                  0
+                ],
+                "area_m2": 4.0,
+                "diffuse_albedo": 0.25
+              },
+              {
+                "normal": [
+                  0,
+                  -1,
+                  0
+                ],
+                "area_m2": 4.0,
+                "diffuse_albedo": 0.25
+              }
+            ],
+            "attitude": {
+              "tumbling": {
+                "axis": [
+                  0.021748,
+                  -0.999763,
+                  0.0
+                ],
+                "rate_deg_s": 24.0,
+                "epoch_utc": "2026-11-17T03:00:00.827"
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}
