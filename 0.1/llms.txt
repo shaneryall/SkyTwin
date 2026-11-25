@@ -1,0 +1,26 @@
+# Skytwin
+
+> Synthetic star-field images with satellite streaks, instrument defects and an exact answer key for every frame.
+
+Skytwin renders synthetic star-field images with satellite streaks and instrument defects, and writes an exact truth file for every frame: each star, streak and target with its position, flux, drawn path and signal-to-noise ratio. Instrument profiles hold every detector defect as a setting, skytwin-calibrate learns a profile from real frames, and skytwin-export turns frames into YOLO or COCO training sets.
+
+## Get started
+
+- [Home](https://shaneryall.github.io/SkyTwin/0.1/index.md)
+- [Your first training set](https://shaneryall.github.io/SkyTwin/0.1/tutorials/first-training-set/index.md)
+
+## Guides
+
+- [Export a training set](https://shaneryall.github.io/SkyTwin/0.1/export-training-data/index.md)
+- [Use and override an instrument profile](https://shaneryall.github.io/SkyTwin/0.1/override-a-profile/index.md)
+- [Learn a profile from real frames](https://shaneryall.github.io/SkyTwin/0.1/learn-a-profile/index.md)
+
+## Reference
+
+- [Scene, truth and headers](https://shaneryall.github.io/SkyTwin/0.1/scene-format/index.md)
+- [Instrument profiles](https://shaneryall.github.io/SkyTwin/0.1/reference/profile/index.md)
+- [Labels](https://shaneryall.github.io/SkyTwin/0.1/labels/index.md)
+- [skytwin-calibrate](https://shaneryall.github.io/SkyTwin/0.1/reference/calibrate/index.md)
+- [Command-line reference](https://shaneryall.github.io/SkyTwin/0.1/reference/cli/index.md)
+- [Python API](https://shaneryall.github.io/SkyTwin/0.1/reference/python-api/index.md)
+
