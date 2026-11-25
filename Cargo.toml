@@ -19,7 +19,7 @@ serde = { version = "1", features = ["derive"] }
 serde_json = { version = "1", features = ["float_roundtrip"] }
 # Pure-Rust maths: the same bits on every OS and CPU.
 # Star catalogues and sky types shared with the Fayde plate solver.
-fayde-catalog = "0.3.3"
+fayde-catalog = "0.4.0"
 fayde-core = "0.3.3"
 # SGP4 (Vallado 2006) with libm maths, so TLE scenes stay bit-reproducible.
 sgp4 = { version = "2.4", default-features = false, features = ["alloc", "libm"] }
