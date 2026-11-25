@@ -108,7 +108,7 @@ jobs:
       - name: Every platform gave the same pixels
         run: |
           cat *.txt
-          test "$(cat *.txt | sort -u | wc -l)" -eq 3
+          test "$(cat *.txt | tr -d '\r' | sort -u | wc -l)" -eq 3
 
   python:
     runs-on: ubuntu-latest
