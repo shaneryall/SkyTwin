@@ -7,6 +7,7 @@ for every frame.
 [![PyPI](https://img.shields.io/pypi/v/skytwin)](https://pypi.org/project/skytwin/)
 [![crates.io](https://img.shields.io/crates/v/skytwin-cli)](https://crates.io/crates/skytwin-cli)
 [![License](https://img.shields.io/badge/license-GPL--3.0--or--later-blue)](LICENSE)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24544458.svg)](https://doi.org/10.5281/zenodo.24544458)
 
 Skytwin is a simulator, written in Rust with Python bindings, of what a camera sees when it looks
 for satellites and other resident space objects, from orbit or from the ground. A frame from a
@@ -186,7 +187,9 @@ in [Issues](https://github.com/shaneryall/SkyTwin/issues). Report a vulnerabilit
 
 ## Citation
 
-If you use Skytwin in published work, cite it as [CITATION.cff](CITATION.cff) gives.
+If you use Skytwin in published work, cite it as [CITATION.cff](CITATION.cff) gives. The DOI
+[10.5281/zenodo.24544458](https://doi.org/10.5281/zenodo.24544458) covers every version; each
+release also has a DOI of its own on Zenodo.
 
 ## Licence
 

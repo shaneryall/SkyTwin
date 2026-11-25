@@ -8,6 +8,7 @@ authors:
     given-names: Shane
 version: 0.1.0
 date-released: 2026-11-25
+doi: 10.5281/zenodo.24544458
 repository-code: "https://github.com/shaneryall/SkyTwin"
 license: GPL-3.0-or-later
 keywords:
