@@ -127,3 +127,7 @@ If you use Skytwin in published work, cite it as [CITATION.cff](https://github.c
 ## Licence
 
 Skytwin uses the GNU General Public License, version 3 or later; see [LICENSE](https://github.com/shaneryall/SkyTwin/blob/main/LICENSE). Third-party data and code notices are in [THIRD-PARTY-LICENSES.md](https://github.com/shaneryall/SkyTwin/blob/main/THIRD-PARTY-LICENSES.md).
+
+## Author
+
+[Shane Ryall](https://shaneryall.com/) is a Canadian AI researcher and engineer based in Ottawa. Find his other projects on [GitHub](https://github.com/shaneryall).
