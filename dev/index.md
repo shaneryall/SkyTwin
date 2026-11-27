@@ -4,6 +4,8 @@
 
 [Install](#install) · [Quick start](#quick-start) · [Tutorial](https://shaneryall.github.io/SkyTwin/dev/tutorials/first-training-set/index.md) · [Profiles](https://shaneryall.github.io/SkyTwin/dev/reference/profile/index.md) · [Labels](https://shaneryall.github.io/SkyTwin/dev/labels/index.md) · [Documentation](https://shaneryall.github.io/SkyTwin/) · [Changelog](https://github.com/shaneryall/SkyTwin/blob/main/CHANGELOG.md)
 
+Skytwin is developed and maintained by [Shane Ryall](https://shaneryall.com/).
+
 Skytwin is a simulator, written in Rust with Python bindings, of what a camera sees when it looks for satellites and other resident space objects, from orbit or from the ground. A frame from a real camera comes with no list of what is in it. A frame from Skytwin comes with a truth file that gives the position, path, flux and signal-to-noise ratio of every star, streak and target. That makes it a test bench for detectors, trackers and plate solvers (such as [Fayde](https://github.com/shaneryall/Fayde)), and a source of labelled training data for space domain awareness.
 
 Stars are placed by hand, at random, or read from UCAC4 or a Gaia extract and moved to the observation epoch; with a sky pointing, the FITS header carries a TAN or TAN-SIP WCS. Observers and targets come from TLEs, state vectors or ephemeris tables, with light-time, Earth shadow, glints from tumbling facets, and refraction and extinction for a ground site. An instrument profile holds every detector and optics defect as a setting, fixed or drawn per frame. The same scene file and seed give the same pixels on every machine.
