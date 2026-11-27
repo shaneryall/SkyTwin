@@ -206,3 +206,8 @@ release also has a DOI of its own on Zenodo.
 
 Skytwin uses the GNU General Public License, version 3 or later; see [LICENSE](LICENSE).
 Third-party data and code notices are in [THIRD-PARTY-LICENSES.md](THIRD-PARTY-LICENSES.md).
+
+## Author
+
+[Shane Ryall](https://shaneryall.com/) is a Canadian AI researcher and engineer based in Ottawa.
+Find his other projects on [GitHub](https://github.com/shaneryall).
