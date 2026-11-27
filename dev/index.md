@@ -130,4 +130,7 @@ Skytwin uses the GNU General Public License, version 3 or later; see [LICENSE](h
 
 ## Author
 
-[Shane Ryall](https://shaneryall.com/) is a Canadian AI researcher and engineer based in Ottawa. Find his other projects on [GitHub](https://github.com/shaneryall).
+[Shane Ryall](https://shaneryall.com) is a Canadian AI researcher and engineer working across artificial intelligence, defence, space systems and scientific computing.
+
+- Website: https://shaneryall.com
+- GitHub: https://github.com/shaneryall
