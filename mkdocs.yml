@@ -1,4 +1,5 @@
 site_name: Skytwin
+site_author: Shane Ryall
 site_description: Synthetic star-field images with satellite streaks, instrument defects and an exact answer key for every frame.
 site_url: https://shaneryall.github.io/SkyTwin/
 repo_url: https://github.com/shaneryall/SkyTwin

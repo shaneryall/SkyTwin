@@ -35,6 +35,7 @@ torch = ["torch"]
 [project.urls]
 Homepage = "https://github.com/shaneryall/SkyTwin"
 Repository = "https://github.com/shaneryall/SkyTwin"
+"Author website" = "https://shaneryall.com/"
 Documentation = "https://shaneryall.github.io/SkyTwin/"
 Changelog = "https://github.com/shaneryall/SkyTwin/blob/main/CHANGELOG.md"
 

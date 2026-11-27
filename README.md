@@ -18,6 +18,8 @@ for every frame.**
 
 </div>
 
+Skytwin is developed and maintained by [Shane Ryall](https://shaneryall.com/).
+
 Skytwin is a simulator, written in Rust with Python bindings, of what a camera sees when it looks
 for satellites and other resident space objects, from orbit or from the ground. A frame from a
 real camera comes with no list of what is in it. A frame from Skytwin comes with a truth file
